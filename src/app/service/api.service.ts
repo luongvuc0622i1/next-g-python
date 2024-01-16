@@ -27,6 +27,10 @@ export class ApiService {
     return this.http.put<any>(`${API_URL}/update/${id}`, obj);
   }
 
+  updateNoFile(obj: any, id: number): Observable<any> {
+    return this.http.put<any>(`${API_URL}/update-no-file/${id}`, obj);
+  }
+
   delete(id: number): Observable<any> {
     return this.http.delete<any>(`${API_URL}/delete/${id}`);
   }

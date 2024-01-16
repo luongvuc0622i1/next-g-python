@@ -2,14 +2,16 @@
     <div class="w-100">
       <div class="relative">
         <label class="input-label-default color-gray-1" for="name">Name</label>
-        <input class="input-field body-4 w-100" type="text" id="name" formControlName="name" />
+        <input class="input-field body-4 w-100" type="text" id="name" formControlName="name" (keyup)="formatName()" />
       </div>
+      <div class="error">{{statusName}}</div>
     </div>
     <div class="w-100">
       <div class="relative">
         <label class="input-label-default color-gray-1" for="url">Url</label>
-        <input class="input-field body-4 w-100" type="text" id="url" formControlName="url" />
+        <input class="input-field body-4 w-100" type="text" id="url" formControlName="url" (keyup)="formatUrl()" />
       </div>
+      <div class="error">{{statusUrl}}</div>
     </div>
     <div class="w-100">
       <div class="relative">
@@ -19,14 +21,15 @@
           <button><label style="cursor: pointer;" for="fileInput">Choose File</label></button>
         </div>
       </div>
+      <div class="error">{{statusSpider}}</div>
     </div>
     <div>
       <input style="display: none;" type="file" id="fileInput" (change)="onFileSelected($event)" />
 
       <div class="clearfix">
         <button (click)="save()">Lưu</button>
-        <button *ngIf="this.id" (click)="delete()">Xóa</button>
-        <button (click)="closeModal.emit()" type="button">Back</button>
+        <button *ngIf="this.formConfiguration.value.id" (click)="delete()">Xóa</button>
+        <button (click)="back()" type="button">Back</button>
       </div>
     </div>
   </form>

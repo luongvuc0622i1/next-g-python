@@ -9,6 +9,15 @@ body {
     margin: 0;
 }
 
+.error {
+    margin-top: 4px;
+    text-align: left;
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
 button {
     cursor: pointer;
 }

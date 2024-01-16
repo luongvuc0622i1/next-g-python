@@ -12,7 +12,11 @@ export class ModalConfigComponent {
   @Input id: number;
   @Output() refresh = new EventEmitter<void>();
   @Output() closeModal = new EventEmitter<void>();
+  statusName: string = '';
+  statusUrl: string = '';
+  statusSpider: string = '';
   formConfiguration: FormGroup = new FormGroup({
+    id: new FormControl(),
     name: new FormControl(),
     url: new FormControl(),
     spider: new FormControl(),
@@ -24,6 +28,7 @@ export class ModalConfigComponent {
     if (!this.id) return;
     this.apiService.getPage(this.id).subscribe(response => {
       this.formConfiguration.patchValue({
+        'id': this.id,
         'name': response.name,
         'url': response.url,
         'spider': response.spider_url,
@@ -71,27 +76,38 @@ export class ModalConfigComponent {
   }
 
   save() {
+    this.formatName();
+    this.formatUrl();
+    this.formatSpider();
+    if (this.statusName || this.statusUrl || this.statusSpider) return;
     const formData: FormData = new FormData();
     formData.append('name', this.formConfiguration.value.name);
     formData.append('url', this.formConfiguration.value.url);
     if (this.selectedFile) {
       formData.append('file', this.selectedFile, this.selectedFile.name);
+      if (this.formConfiguration.value.id) {
+        this.apiService.update(formData, this.formConfiguration.value.id).subscribe(data => {
+          // this.showModalSuccessfully = true;
+          this.refresh.emit();
+          this.closeModal.emit();
+          console.log('dung')
+        }, () => {
+          // this.showModalFailed = true;
+          console.log('sai')
+        });
+      } else {
+        this.apiService.create(formData).subscribe(data => {
+          // this.showModalSuccessfully = true;
+          this.refresh.emit();
+          this.closeModal.emit();
+          console.log('dung')
+        }, () => {
+          // this.showModalFailed = true;
+          console.log('sai')
+        });
+      }
     } else {
-      formData.append('file', new Blob(), this.formConfiguration.value.spider);
-    }
-
-    if (this.id) {
-      this.apiService.update(formData, this.id).subscribe(data => {
-        // this.showModalSuccessfully = true;
-        this.refresh.emit();
-        this.closeModal.emit();
-        console.log('dung')
-      }, () => {
-        // this.showModalFailed = true;
-        console.log('sai')
-      });
-    } else {
-      this.apiService.create(formData).subscribe(data => {
+      this.apiService.updateNoFile(formData, this.formConfiguration.value.id).subscribe(data => {
         // this.showModalSuccessfully = true;
         this.refresh.emit();
         this.closeModal.emit();
@@ -103,8 +119,29 @@ export class ModalConfigComponent {
     }
   }
 
+  formatName() {
+    if (!this.formConfiguration.value.name) {
+      this.statusName = 'Name is require';
+    } else this.statusName = '';
+  }
+
+  formatUrl() {
+    const urlRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
+    if (!this.formConfiguration.value.url) {
+      this.statusUrl = 'Url is require';
+    } else if (!urlRegex.test(this.formConfiguration.value.url)) {
+      this.statusUrl = 'Url format is not correct';
+    } else this.statusUrl = '';
+  }
+
+  formatSpider() {
+    if (!this.formConfiguration.value.spider) {
+      this.statusSpider = 'Spider is require';
+    } else this.statusSpider = '';
+  }
+
   delete() {
-    this.apiService.delete(this.id).subscribe(data => {
+    this.apiService.delete(this.formConfiguration.value.id).subscribe(data => {
       // this.showModalSuccessfully = true;
       this.refresh.emit();
       this.closeModal.emit();
@@ -113,5 +150,9 @@ export class ModalConfigComponent {
       // this.showModalFailed = true;
       console.log('sai')
     });
+  }
+
+  back() {
+    this.closeModal.emit();
   }
 }
