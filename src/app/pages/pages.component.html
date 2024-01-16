@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="sub-container">
+    <!-- <button (click)="create()">Tạo mới</button> -->
+    <table class="styled-table rounded-corners">
+      <thead>
+        <tr>
+          <th colspan="4">Bảng ...</th>
+          <th><button (click)="create()">Tạo mới</button></th>
+        </tr>
+        <tr>
+          <th>STT</th>
+          <th class="long-text-200">Name</th>
+          <th class="long-text-300">URL</th>
+          <th>View data</th>
+          <th>Config</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="active-row" *ngFor="let item of pages; let i = index">
+          <td style="text-align: center;">{{i + 1}}</td>
+          <td>{{item.website_name}}</td>
+          <td>{{item.website_url}}</td>
+          <td class="button-center"><button (click)="navi(item.id)">Show</button></td>
+          <td class="button-center"><button (click)="config(item.id)">Config</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="modal" *ngIf="showModalConfig" (click)="handleClose($event)">
+  <div class="modal-content">
+    <app-modal-config [id]="id" (refresh)="refresh()" (closeModal)="closeModal()"></app-modal-config>
+  </div>
+</div>
