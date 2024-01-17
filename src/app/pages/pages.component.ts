@@ -9,20 +9,37 @@ import { ApiService } from '../service/api.service';
 })
 export class PagesComponent {
   pages: any;
+  fullData: any;
+  amount: number = 5;
   id: number = 0;
   showModalConfig: boolean = false;
+
+  pageList: any[] = [];
+  curPage: number = 1;
+  numOfPages: number = 1;
+
   constructor (private apiService: ApiService,
                private router: Router) {
   }
 
   ngOnInit(): void {
-    this.refresh();
+    this.apiService.getPages().subscribe(response => {
+      // this.fullData = response;
+      let elToAdd = this.amount - (response.length % this.amount);
+      this.fullData = [
+        ...response,
+        ...Array.from({ length: elToAdd }, () => ({}))
+      ]
+      this.numOfPages = Math.floor(response.length/this.amount) + 1;
+      this.refresh();
+    }, (e) => {
+      this.fullData = Array.from({ length: this.amount }, () => ({}));
+      this.refresh();
+    });
   }
 
   refresh(): void {
-    this.apiService.getPages().subscribe(response => {
-      this.pages = response;
-    });
+    this.pages = this.fullData.slice(0, this.amount);
   }
 
   closeModal(): void {
@@ -48,5 +65,32 @@ export class PagesComponent {
 
   create(): void {
     this.showModalConfig = true;
+  }
+
+  // paging
+  firstPage() {
+    this.curPage = 1;
+    this.loadRows();
+  }
+
+  prevPage() {
+    this.curPage -= 1;
+    this.loadRows();
+  }
+
+  nextPage() {
+    this.curPage += 1;
+    this.loadRows();
+  }
+
+  lastPage() {
+    this.curPage = this.numOfPages;
+    this.loadRows();
+  }
+
+  loadRows() {
+    let start = (this.curPage - 1)*this.amount;
+    let end = start + this.amount;
+    this.pages = this.fullData.slice(start, end);
   }
 }

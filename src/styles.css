@@ -24,7 +24,8 @@ button {
 
 .container {
     position: relative;
-    height: 100vh; /* Chiều cao 100% của viewport */
+    height: 100vh;
+    /* Chiều cao 100% của viewport */
 }
 
 .relative {
@@ -53,7 +54,7 @@ button {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.styled-table thead tr {
+.styled-table thead tr, .styled-table tfoot tr {
     background-color: #009879;
     color: #ffffff;
     text-align: center;
@@ -93,6 +94,10 @@ button {
 .styled-table td.button-center {
     text-align: center;
     width: 120px;
+}
+
+.styled-table td {
+    height: 50px;
 }
 
 /* Góc bo */
@@ -166,4 +171,22 @@ button {
     left: 17px;
     top: 19px;
     font-size: 16px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+}
+
+.page-numbers {
+    margin: 1em 1em 0;
+}
+
+.page-number {
+    padding: 0.5em;
+    opacity: 0.5;
+    cursor: pointer;
 }

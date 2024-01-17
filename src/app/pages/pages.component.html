@@ -17,13 +17,30 @@
       </thead>
       <tbody>
         <tr class="active-row" *ngFor="let item of pages; let i = index">
-          <td style="text-align: center;">{{i + 1}}</td>
+          <td style="text-align: center;">{{item.website_url ? (curPage-1)*amount + i + 1 : ''}}</td>
           <td>{{item.website_name}}</td>
           <td>{{item.website_url}}</td>
-          <td class="button-center"><button (click)="navi(item.id)">Show</button></td>
-          <td class="button-center"><button (click)="config(item.id)">Config</button></td>
+          <td class="button-center"><button (click)="navi(item.id)" *ngIf="item.website_url">Show</button></td>
+          <td class="button-center"><button (click)="config(item.id)" *ngIf="item.website_url">Config</button></td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5">
+            <div class="pagination">
+              <button class="backward" (click)="firstPage()"
+                [ngStyle]="{ 'display': curPage == 1 ? 'none' : 'block' }">first</button>
+              <button class="backward" (click)="prevPage()"
+                [ngStyle]="{ 'display': curPage == 1 ? 'none' : 'block' }">previous</button>
+              <button class="forward" (click)="nextPage()"
+                [ngStyle]="{ 'display': curPage == numOfPages ? 'none' : 'block' }">next</button>
+              <button class="forward" (click)="lastPage()"
+                [ngStyle]="{ 'display': curPage == numOfPages ? 'none' : 'block' }">last</button>
+              <div class="page-numbers" id="pageNumbers"></div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
