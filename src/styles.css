@@ -54,7 +54,8 @@ button {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.styled-table thead tr, .styled-table tfoot tr {
+.styled-table thead tr,
+.styled-table tfoot tr {
     background-color: #009879;
     color: #ffffff;
     text-align: center;
@@ -183,18 +184,6 @@ button {
     gap: 5px;
 }
 
-/* .page-numbers {
-    margin: 1em 1em 0;
-    display: flex;
-    gap: 5px;
-} */
-
-/* .page-number {
-    padding: 0.5em;
-    opacity: 0.5;
-    cursor: pointer;
-} */
-
 .pag {
     width: 31px;
     height: 31px;
@@ -203,12 +192,54 @@ button {
     background: #ffffff;
     color: #009879;
     border-radius: 50%;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,.1);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .1);
 }
 
-.selected, .pag:hover, a:active, a:focus {
+.selected,
+.pag:hover,
+a:active,
+a:focus {
     width: 43px;
     height: 43px;
     padding: 12px;
-    box-shadow: 0px 5px 10px 0px rgba(0,0,0,.5);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .5);
+}
+
+/* Spinner */
+.loader,
+.bar {
+	width: 60px;
+	height: 20px;
+}
+.bar {
+	position: absolute;
+	display: flex;
+	align-items: center;
+}
+.bar::before,
+.bar::after {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 10px;
+	height: 10px;
+	background: #ffffff;
+	background: #009879;
+	opacity: 0;
+	box-shadow: 1px 1px 4px rgba(0,0,0,.15);
+	border-radius: 10px;
+	animation: slideleft 3s ease-in-out infinite;
+}
+
+.bar1::before { animation-delay: 0.00s }
+.bar1::after  { animation-delay: 0.3s }
+.bar2::before { animation-delay: 0.60s }
+.bar2::after  { animation-delay: 0.90s }
+.bar3::before { animation-delay: 1.20s }
+.bar3::after  { animation-delay: 1.50s }
+
+@keyframes slideleft {
+	10% { opacity: 0; transform: scale(0); right: 0 }
+	50% { opacity: 1; transform: scale(1) }
+	90% { opacity: 0; transform: scale(0); right: 100% }
 }

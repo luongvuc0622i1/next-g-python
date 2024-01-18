@@ -53,6 +53,6 @@
 
 <div class="modal" *ngIf="showModalConfig" (click)="handleClose($event)">
   <div class="modal-content">
-    <app-modal-config [id]="this.id" (refresh)="refresh()" (closeModal)="closeModal()"></app-modal-config>
+    <app-modal-config [id]="this.id" (refresh)="onload()" (closeModal)="closeModal()"></app-modal-config>
   </div>
 </div>

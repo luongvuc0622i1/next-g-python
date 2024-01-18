@@ -19,6 +19,9 @@ export class ViewsComponent {
 
   namePage: any;
   id: number = 0;
+
+  loading: boolean = true;
+
   constructor (private apiService: ApiService,
                private route: ActivatedRoute) {}
 
@@ -26,6 +29,12 @@ export class ViewsComponent {
     this.route.params.subscribe((params: Params) => {
       this.id = parseInt(params['id']);
     });
+    this.onload();
+  }
+
+  onload(): void {
+    this.loading = true;
+    this.fullData = [];
     this.apiService.getView(this.id).subscribe(response => {
       let elToAdd = this.amount - (response.length % this.amount);
       this.fullData = [
@@ -35,9 +44,11 @@ export class ViewsComponent {
       this.numOfPages = Math.floor(response.length/this.amount) + 1;
       this.pageNumbers = Array.from({ length: this.numOfPages }, (_, index) => index + 1);
       this.refresh();
+      this.loading = false;
     }, () => {
       this.fullData = Array.from({ length: this.amount }, () => ({}));
       this.refresh();
+      this.loading = false;
     });
     this.apiService.getNamePage(this.id).subscribe(response => {
       this.namePage = response.name;
