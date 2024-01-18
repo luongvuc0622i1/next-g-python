@@ -25,7 +25,6 @@ export class PagesComponent {
 
   ngOnInit(): void {
     this.apiService.getPages().subscribe(response => {
-      // this.fullData = response;
       let elToAdd = this.amount - (response.length % this.amount);
       this.fullData = [
         ...response,

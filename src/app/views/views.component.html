@@ -3,8 +3,12 @@
     <table class="styled-table rounded-corners">
       <thead>
         <tr>
-          <th colspan="3">{{namePage}}</th>
-          <th><button>Refresh</button></th>
+          <th colspan="4">
+            <div style="position: relative;">
+              <div style="font-size: 30px;">{{namePage}}</div>
+              <button class="pag" style="position: absolute; top: 5px; right: 0px;" (click)="refresh()">↻</button>
+            </div>
+          </th>
         </tr>
         <tr>
           <th>STT</th>
@@ -15,12 +19,35 @@
       </thead>
       <tbody>
         <tr class="active-row" *ngFor="let item of views; let i = index">
-          <td style="text-align: center;">{{i + 1}}</td>
-          <td>{{item.title}}</td>
-          <td>{{item.description}}</td>
+          <td style="text-align: center;">{{item.title ? (curPage-1)*amount + i + 1 : ''}}</td>
+          <td>
+            <div style="overflow-y: auto; height: 100px;">{{item.title}}</div>
+          </td>
+          <td>
+            <div style="overflow-y: auto; height: 100px;">{{item.description}}</div>
+          </td>
           <td>{{item.sdt}}</td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5">
+            <div class="pagination">
+              <button *ngIf="curPage != 1" class="pag" (click)="firstPage()">«</button>
+              <button *ngIf="curPage != 1" class="pag" (click)="prevPage()">‹</button>
+              <div *ngIf="curPage == 1" style="width: 67px;"></div>
+
+              <button class="pag" *ngFor="let num of pageNumbers"
+                [ngStyle]="{ 'color': num == curPage ? 'red' : '', 'font-weight': num == curPage ? '600' : '' }"
+                (click)="choosePage(num)">{{num}}</button>
+
+              <button *ngIf="curPage != numOfPages" class="pag" (click)="nextPage()">›</button>
+              <button *ngIf="curPage != numOfPages" class="pag" (click)="lastPage()">»</button>
+              <div *ngIf="curPage == numOfPages" style="width: 67px;"></div>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </div>
