@@ -1,11 +1,14 @@
 <div class="container">
   <div class="sub-container">
-    <!-- <button (click)="create()">Tạo mới</button> -->
     <table class="styled-table rounded-corners">
       <thead>
         <tr>
-          <th colspan="4">Bảng ...</th>
-          <th><button (click)="create()">Tạo mới</button></th>
+          <th colspan="5">
+            <div style="position: relative;">
+              <div style="font-size: 30px;">Bảng ...</div>
+              <button class="pag" style="position: absolute; top: 5px; right: 0px;" (click)="create()">+</button>
+            </div>
+          </th>
         </tr>
         <tr>
           <th>STT</th>
@@ -28,15 +31,17 @@
         <tr>
           <td colspan="5">
             <div class="pagination">
-              <button class="backward" (click)="firstPage()"
-                [ngStyle]="{ 'display': curPage == 1 ? 'none' : 'block' }">first</button>
-              <button class="backward" (click)="prevPage()"
-                [ngStyle]="{ 'display': curPage == 1 ? 'none' : 'block' }">previous</button>
-              <button class="forward" (click)="nextPage()"
-                [ngStyle]="{ 'display': curPage == numOfPages ? 'none' : 'block' }">next</button>
-              <button class="forward" (click)="lastPage()"
-                [ngStyle]="{ 'display': curPage == numOfPages ? 'none' : 'block' }">last</button>
-              <div class="page-numbers" id="pageNumbers"></div>
+              <button *ngIf="curPage != 1" class="pag" (click)="firstPage()">«</button>
+              <button *ngIf="curPage != 1" class="pag" (click)="prevPage()">‹</button>
+              <div *ngIf="curPage == 1" style="width: 67px;"></div>
+
+              <button class="pag" *ngFor="let num of pageNumbers"
+                [ngStyle]="{ 'color': num == curPage ? 'red' : '', 'font-weight': num == curPage ? '600' : '' }"
+                (click)="choosePage(num)">{{num}}</button>
+
+              <button *ngIf="curPage != numOfPages" class="pag" (click)="nextPage()">›</button>
+              <button *ngIf="curPage != numOfPages" class="pag" (click)="lastPage()">»</button>
+              <div *ngIf="curPage == numOfPages" style="width: 67px;"></div>
             </div>
           </td>
         </tr>

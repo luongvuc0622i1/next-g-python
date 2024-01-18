@@ -174,19 +174,41 @@ button {
 }
 
 .pagination {
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
     flex-wrap: wrap;
+    gap: 5px;
 }
 
-.page-numbers {
+/* .page-numbers {
     margin: 1em 1em 0;
-}
+    display: flex;
+    gap: 5px;
+} */
 
-.page-number {
+/* .page-number {
     padding: 0.5em;
     opacity: 0.5;
     cursor: pointer;
+} */
+
+.pag {
+    width: 31px;
+    height: 31px;
+    border: none;
+    padding: 7px;
+    background: #ffffff;
+    color: #009879;
+    border-radius: 50%;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,.1);
+}
+
+.selected, .pag:hover, a:active, a:focus {
+    width: 43px;
+    height: 43px;
+    padding: 12px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,.5);
 }

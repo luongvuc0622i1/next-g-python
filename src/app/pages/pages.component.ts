@@ -17,6 +17,7 @@ export class PagesComponent {
   pageList: any[] = [];
   curPage: number = 1;
   numOfPages: number = 1;
+  pageNumbers: any[] = [];
 
   constructor (private apiService: ApiService,
                private router: Router) {
@@ -31,8 +32,9 @@ export class PagesComponent {
         ...Array.from({ length: elToAdd }, () => ({}))
       ]
       this.numOfPages = Math.floor(response.length/this.amount) + 1;
+      this.pageNumbers = Array.from({ length: this.numOfPages }, (_, index) => index + 1);
       this.refresh();
-    }, (e) => {
+    }, () => {
       this.fullData = Array.from({ length: this.amount }, () => ({}));
       this.refresh();
     });
@@ -75,6 +77,11 @@ export class PagesComponent {
 
   prevPage() {
     this.curPage -= 1;
+    this.loadRows();
+  }
+
+  choosePage(num: number) {
+    this.curPage = num;
     this.loadRows();
   }
 
