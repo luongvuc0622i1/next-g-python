@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "next-g-python": {
+    "Crawler-Angular": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/next-g-python",
+            "outputPath": "dist/Crawler-Angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "next-g-python:build:production"
+              "browserTarget": "Crawler-Angular:build:production"
             },
             "development": {
-              "browserTarget": "next-g-python:build:development"
+              "browserTarget": "Crawler-Angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "next-g-python:build"
+            "browserTarget": "Crawler-Angular:build"
           }
         },
         "test": {

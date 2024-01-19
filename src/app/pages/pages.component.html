@@ -1,58 +1,47 @@
-<div class="container">
-  <div class="sub-container">
-    <table class="styled-table rounded-corners">
-      <thead>
-        <tr>
-          <th colspan="5">
-            <div style="position: relative;">
-              <div style="font-size: 30px;">Bảng ...</div>
-              <button class="pag" style="position: absolute; top: 5px; right: 0px;" (click)="create()">+</button>
-            </div>
-          </th>
-        </tr>
-        <tr>
-          <th>STT</th>
-          <th class="long-text-200">Name</th>
-          <th class="long-text-300">URL</th>
-          <th>View data</th>
-          <th>Config</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="active-row" *ngFor="let item of pages; let i = index">
-          <td style="text-align: center;">{{item.website_url ? (curPage-1)*amount + i + 1 : ''}}</td>
-          <td>{{item.website_name}}</td>
-          <td>{{item.website_url}}</td>
-          <td class="button-center"><button (click)="navi(item.id)" *ngIf="item.website_url">Show</button></td>
-          <td class="button-center"><button (click)="config(item.id)" *ngIf="item.website_url">Config</button></td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="5">
-            <div class="pagination">
-              <button *ngIf="curPage != 1" class="pag" (click)="firstPage()">«</button>
-              <button *ngIf="curPage != 1" class="pag" (click)="prevPage()">‹</button>
-              <div *ngIf="curPage == 1" style="width: 67px;"></div>
+<table class="styled-table rounded-corners">
+  <thead>
+    <tr>
+      <th colspan="5">
+        <div style="position: relative;">
+          <div style="font-size: 30px;">Bảng ...</div>
+          <button class="pag" style="position: absolute; top: 5px; right: 0px;" (click)="create()">+</button>
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <th>STT</th>
+      <th class="long-text-200">Name</th>
+      <th class="long-text-300">URL</th>
+      <th>View data</th>
+      <th>Config</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active-row" *ngFor="let item of pages; let i = index">
+      <td style="text-align: center;">{{item.website_url ? (curPage-1)*amount + i + 1 : ''}}</td>
+      <td>{{item.website_name}}</td>
+      <td>{{item.website_url}}</td>
+      <td class="button-center"><button (click)="navi(item.id)" *ngIf="item.website_url">Show</button></td>
+      <td class="button-center"><button (click)="config(item.id)" *ngIf="item.website_url">Config</button></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="5">
+        <div class="pagination">
+          <button *ngIf="curPage != 1" class="pag" (click)="firstPage()">«</button>
+          <button *ngIf="curPage != 1" class="pag" (click)="prevPage()">‹</button>
+          <div *ngIf="curPage == 1" style="width: 67px;"></div>
 
-              <button class="pag" *ngFor="let num of pageNumbers"
-                [ngStyle]="{ 'color': num == curPage ? 'red' : '', 'font-weight': num == curPage ? '600' : '' }"
-                (click)="choosePage(num)">{{num}}</button>
+          <button class="pag" *ngFor="let num of pageNumbers"
+            [ngStyle]="{ 'color': num == curPage ? 'red' : '', 'font-weight': num == curPage ? '600' : '' }"
+            (click)="choosePage(num)">{{num}}</button>
 
-              <button *ngIf="curPage != numOfPages" class="pag" (click)="nextPage()">›</button>
-              <button *ngIf="curPage != numOfPages" class="pag" (click)="lastPage()">»</button>
-              <div *ngIf="curPage == numOfPages" style="width: 67px;"></div>
-            </div>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</div>
-
-
-<div class="modal" *ngIf="showModalConfig" (click)="handleClose($event)">
-  <div class="modal-content">
-    <app-modal-config [id]="this.id" (refresh)="onload()" (closeModal)="closeModal()"></app-modal-config>
-  </div>
-</div>
+          <button *ngIf="curPage != numOfPages" class="pag" (click)="nextPage()">›</button>
+          <button *ngIf="curPage != numOfPages" class="pag" (click)="lastPage()">»</button>
+          <div *ngIf="curPage == numOfPages" style="width: 67px;"></div>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+</table>

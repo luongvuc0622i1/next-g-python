@@ -8,6 +8,7 @@ import { ViewsComponent } from './views/views.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalConfigComponent } from './modal-config/modal-config.component';
+import { TransferService } from './service/transfer.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { ModalConfigComponent } from './modal-config/modal-config.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TransferService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

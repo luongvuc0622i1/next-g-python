@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../service/api.service';
+import { TransferService } from '../service/transfer.service';
 
 @Component({
   selector: 'app-modal-config',
@@ -22,7 +23,8 @@ export class ModalConfigComponent {
     spider: new FormControl(),
   });
   arr: string[] = ['name', 'url', 'spider'];
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+    private transferService: TransferService) { }
 
   ngOnInit(): void {
     if (!this.id) return;
@@ -88,7 +90,7 @@ export class ModalConfigComponent {
       if (this.formConfiguration.value.id) {
         this.apiService.update(formData, this.formConfiguration.value.id).subscribe(data => {
           // this.showModalSuccessfully = true;
-          this.refresh.emit();
+          this.onload();
           this.closeModal.emit();
           console.log('dung')
         }, () => {
@@ -98,7 +100,7 @@ export class ModalConfigComponent {
       } else {
         this.apiService.create(formData).subscribe(data => {
           // this.showModalSuccessfully = true;
-          this.refresh.emit();
+          this.onload();
           this.closeModal.emit();
           console.log('dung')
         }, () => {
@@ -109,7 +111,7 @@ export class ModalConfigComponent {
     } else {
       this.apiService.updateNoFile(formData, this.formConfiguration.value.id).subscribe(data => {
         // this.showModalSuccessfully = true;
-        this.refresh.emit();
+        this.onload();
         this.closeModal.emit();
         console.log('dung')
       }, () => {
@@ -143,7 +145,7 @@ export class ModalConfigComponent {
   delete() {
     this.apiService.delete(this.formConfiguration.value.id).subscribe(data => {
       // this.showModalSuccessfully = true;
-      this.refresh.emit();
+      this.onload();
       this.closeModal.emit();
       console.log('dung')
     }, () => {
@@ -154,5 +156,9 @@ export class ModalConfigComponent {
 
   back() {
     this.closeModal.emit();
+  }
+
+  onload() {
+    this.transferService.callReload();
   }
 }

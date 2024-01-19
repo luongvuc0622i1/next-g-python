@@ -1,1 +1,17 @@
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="sub-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- <div class="modal" *ngIf="showModal" (click)="handleClose($event)">
+  <div class="modal-content">
+    <app-modal-config [id]="this.id" (refresh)="onload()" (closeModal)="closeModal()"></app-modal-config>
+  </div>
+</div> -->
+
+<div class="modal" *ngIf="showModal" (click)="handleClose($event)">
+  <div class="modal-content">
+    <app-modal-config (closeModal)="closeModal()"></app-modal-config>
+  </div>
+</div>

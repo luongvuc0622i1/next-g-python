@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
+import { TransferService } from '../service/transfer.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pages',
@@ -11,20 +13,25 @@ export class PagesComponent {
   pages: any;
   fullData: any;
   amount: number = 5;
-  id: number = 0;
-  showModalConfig: boolean = false;
 
   pageList: any[] = [];
   curPage: number = 1;
   numOfPages: number = 1;
   pageNumbers: any[] = [];
 
+  private subscription?: Subscription;
+
   constructor (private apiService: ApiService,
-               private router: Router) {
+               private router: Router,
+               private transferService: TransferService) {
   }
 
   ngOnInit(): void {
     this.onload();
+    this.subscription = this.transferService.callReload$.subscribe(() => {
+      console.log(1);
+      this.onload();
+    });
   }
 
   onload(): void {
@@ -47,29 +54,18 @@ export class PagesComponent {
     this.pages = this.fullData.slice(0, this.amount);
   }
 
-  closeModal(): void {
-    this.id = 0;
-    this.showModalConfig = false;
-  }
-
   navi(id: string): void {
     this.router.navigate(['/page', id]);
   }
 
   config(id: string): void {
-    this.id = parseInt(id);
-    this.showModalConfig = true;
-  }
-
-  handleClose(event: MouseEvent): void {
-    this.id = 0;
-    if (!(event.target as HTMLElement).closest('.modal-content')) {
-      this.showModalConfig = false;
-    }
+    this.transferService.setId(parseInt(id));
+    this.transferService.setShowModal(true);
   }
 
   create(): void {
-    this.showModalConfig = true;
+    this.transferService.setId(0);
+    this.transferService.setShowModal(true);
   }
 
   // paging
