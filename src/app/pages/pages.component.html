@@ -17,8 +17,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="active-row" *ngFor="let item of pages; let i = index">
-      <td style="text-align: center;">{{item.website_url ? (curPage-1)*amount + i + 1 : ''}}</td>
+    <tr class="active-row" *ngFor="let item of pages">
+      <td style="text-align: center;">{{item.website_url ? item.index : ''}}</td>
       <td>{{item.website_name}}</td>
       <td>{{item.website_url}}</td>
       <td class="button-center"><button (click)="navi(item.id)" *ngIf="item.website_url">Show</button></td>
@@ -28,19 +28,7 @@
   <tfoot>
     <tr>
       <td colspan="5">
-        <div class="pagination">
-          <button *ngIf="curPage != 1" class="pag" (click)="firstPage()">«</button>
-          <button *ngIf="curPage != 1" class="pag" (click)="prevPage()">‹</button>
-          <div *ngIf="curPage == 1" style="width: 67px;"></div>
-
-          <button class="pag" *ngFor="let num of pageNumbers"
-            [ngStyle]="{ 'color': num == curPage ? 'red' : '', 'font-weight': num == curPage ? '600' : '' }"
-            (click)="choosePage(num)">{{num}}</button>
-
-          <button *ngIf="curPage != numOfPages" class="pag" (click)="nextPage()">›</button>
-          <button *ngIf="curPage != numOfPages" class="pag" (click)="lastPage()">»</button>
-          <div *ngIf="curPage == numOfPages" style="width: 67px;"></div>
-        </div>
+        <app-pagination *ngIf="condition" [fullData]="fullData" [amount]="amount" (refresh)="refresh($event)"></app-pagination>
       </td>
     </tr>
   </tfoot>

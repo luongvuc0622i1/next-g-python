@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalConfigComponent } from './modal-config/modal-config.component';
 import { TransferService } from './service/transfer.service';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PagesComponent,
     ViewsComponent,
-    ModalConfigComponent
+    ModalConfigComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

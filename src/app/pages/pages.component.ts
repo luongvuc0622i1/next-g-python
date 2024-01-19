@@ -11,19 +11,15 @@ import { Subscription } from 'rxjs';
 })
 export class PagesComponent {
   pages: any;
-  fullData: any;
   amount: number = 5;
-
-  pageList: any[] = [];
-  curPage: number = 1;
-  numOfPages: number = 1;
-  pageNumbers: any[] = [];
+  fullData: any;
+  condition: boolean = false;
 
   private subscription?: Subscription;
 
-  constructor (private apiService: ApiService,
-               private router: Router,
-               private transferService: TransferService) {
+  constructor(private apiService: ApiService,
+    private router: Router,
+    private transferService: TransferService) {
   }
 
   ngOnInit(): void {
@@ -36,22 +32,31 @@ export class PagesComponent {
 
   onload(): void {
     this.apiService.getPages().subscribe(response => {
-      let elToAdd = this.amount - (response.length % this.amount);
+      this.fullData = response;
+
+      let elToAdd = this.amount - (this.fullData.length % this.amount);
       this.fullData = [
-        ...response,
+        ...this.fullData,
         ...Array.from({ length: elToAdd }, () => ({}))
       ]
-      this.numOfPages = Math.floor(response.length/this.amount) + 1;
-      this.pageNumbers = Array.from({ length: this.numOfPages }, (_, index) => index + 1);
-      this.refresh();
+      this.fullData = this.fullData.map((item: any, index: number) => {
+        return {
+          index: index + 1,
+          ...item
+        };
+      });
+      this.condition = true;
+      this.refresh(1);
     }, () => {
       this.fullData = Array.from({ length: this.amount }, () => ({}));
-      this.refresh();
+      this.refresh(1);
     });
   }
 
-  refresh(): void {
-    this.pages = this.fullData.slice(0, this.amount);
+  refresh(curPage: number): void {
+    let start = (curPage - 1) * this.amount;
+    let end = start + this.amount;
+    this.pages = this.fullData.slice(start, end);
   }
 
   navi(id: string): void {
@@ -66,37 +71,5 @@ export class PagesComponent {
   create(): void {
     this.transferService.setId(0);
     this.transferService.setShowModal(true);
-  }
-
-  // paging
-  firstPage() {
-    this.curPage = 1;
-    this.loadRows();
-  }
-
-  prevPage() {
-    this.curPage -= 1;
-    this.loadRows();
-  }
-
-  choosePage(num: number) {
-    this.curPage = num;
-    this.loadRows();
-  }
-
-  nextPage() {
-    this.curPage += 1;
-    this.loadRows();
-  }
-
-  lastPage() {
-    this.curPage = this.numOfPages;
-    this.loadRows();
-  }
-
-  loadRows() {
-    let start = (this.curPage - 1)*this.amount;
-    let end = start + this.amount;
-    this.pages = this.fullData.slice(start, end);
   }
 }

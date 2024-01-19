@@ -27,9 +27,9 @@
       <input style="display: none;" type="file" id="fileInput" (change)="onFileSelected($event)" />
 
       <div class="clearfix">
-        <button (click)="save()">Lưu</button>
+        <button class="pag" style="background-color: aqua; width: auto;" (click)="save()">Lưu</button>
         <button *ngIf="this.formConfiguration.value.id" (click)="delete()">Xóa</button>
-        <button (click)="back()" type="button">Back</button>
+        <button class="pag" style="background-color: aqua; width: auto;" (click)="back()" type="button">Back</button>
       </div>
     </div>
   </form>

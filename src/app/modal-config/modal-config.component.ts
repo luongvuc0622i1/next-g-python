@@ -9,10 +9,8 @@ import { TransferService } from '../service/transfer.service';
   styleUrls: ['./modal-config.component.css']
 })
 export class ModalConfigComponent {
-  // @ts-ignore
-  @Input id: number;
-  @Output() refresh = new EventEmitter<void>();
   @Output() closeModal = new EventEmitter<void>();
+  id: number = 0;
   statusName: string = '';
   statusUrl: string = '';
   statusSpider: string = '';
@@ -27,6 +25,9 @@ export class ModalConfigComponent {
     private transferService: TransferService) { }
 
   ngOnInit(): void {
+    this.transferService.sharedData$.subscribe((data) => {
+      this.id = data.id;
+    });
     if (!this.id) return;
     this.apiService.getPage(this.id).subscribe(response => {
       this.formConfiguration.patchValue({
