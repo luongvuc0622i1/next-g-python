@@ -21,8 +21,8 @@
       <td style="text-align: center;">{{item.website_url ? item.index : ''}}</td>
       <td>{{item.website_name}}</td>
       <td>{{item.website_url}}</td>
-      <td class="button-center"><button (click)="navi(item.id)" *ngIf="item.website_url">Show</button></td>
-      <td class="button-center"><button (click)="config(item.id)" *ngIf="item.website_url">Config</button></td>
+      <td class="button-center"><button class="rec-green" (click)="navi(item.id)" *ngIf="item.website_url">Show</button></td>
+      <td class="button-center"><button class="rec-green" (click)="config(item.id)" *ngIf="item.website_url">Config</button></td>
     </tr>
   </tbody>
   <tfoot>

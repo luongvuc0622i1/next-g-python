@@ -72,10 +72,17 @@ export class ModalConfigComponent {
   selectedFile: File | null = null;
 
   onFileSelected(event: any): void {
+    if (!event.target.files[0]) return;
     this.selectedFile = event.target.files[0] as File;
     this.formConfiguration.patchValue({
       'spider': this.selectedFile.name
     });
+  }
+
+  triggerFileInput() {
+    // const file = document.getElementById('fileInput') as HTMLInputElement;
+    // file.click();
+    document.getElementById('fileInput')?.click();
   }
 
   save() {

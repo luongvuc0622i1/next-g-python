@@ -25,7 +25,6 @@ export class PagesComponent {
   ngOnInit(): void {
     this.onload();
     this.subscription = this.transferService.callReload$.subscribe(() => {
-      console.log(1);
       this.onload();
     });
   }
