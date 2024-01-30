@@ -36,9 +36,22 @@ button {
     width: 100%;
 }
 
+.parent {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 .sub-container {
     position: absolute;
-    width: max-content;
+    width: 80%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -84,12 +97,20 @@ button {
     color: #009879;
 }
 
+.styled-table .long-text-100 {
+    width: 10%;
+}
+
 .styled-table .long-text-200 {
-    width: 200px;
+    width: 20%;
 }
 
 .styled-table .long-text-300 {
-    width: 300px;
+    width: 30%;
+}
+
+.styled-table .long-text-500 {
+    width: 50%;
 }
 
 .styled-table td.button-center {
@@ -98,7 +119,7 @@ button {
 }
 
 .styled-table td {
-    height: 50px;
+    height: 60px;
 }
 
 /* Góc bo */

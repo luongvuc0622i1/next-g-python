@@ -1,5 +1,5 @@
-<div *ngIf="loading">
-  <div class="loader">
+<div class="parent" *ngIf="loading">
+  <div class="loader child">
     <div class="bar bar1"></div>
     <div class="bar bar2"></div>
     <div class="bar bar3"></div>
@@ -11,15 +11,16 @@
       <tr>
         <th colspan="4">
           <div style="position: relative;">
+            <button class="pag" style="position: absolute; top: 5px; left: 0px; transform: scaleX(-1);" (click)="back()">➦</button>
             <div style="font-size: 30px;">{{namePage}}</div>
             <button class="pag" style="position: absolute; top: 5px; right: 0px;" (click)="onload()">↻</button>
           </div>
         </th>
       </tr>
       <tr>
-        <th>STT</th>
+        <th class="long-text-100">STT</th>
         <th class="long-text-200">Title</th>
-        <th class="long-text-300">Description</th>
+        <th class="long-text-500">Description</th>
         <th class="long-text-200">SĐT</th>
       </tr>
     </thead>

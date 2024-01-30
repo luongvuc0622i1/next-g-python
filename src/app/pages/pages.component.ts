@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class PagesComponent {
   pages: any;
-  amount: number = 5;
+  amount: number = 10;
   fullData: any;
   condition: boolean = false;
 

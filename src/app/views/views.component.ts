@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ApiService } from '../service/api.service';
 export class ViewsComponent {
   views: any;
   fullData: any;
-  amount: number = 3;
+  amount: number = 5;
   condition: boolean = false;
 
   namePage: any;
@@ -19,7 +19,8 @@ export class ViewsComponent {
   loading: boolean = true;
 
   constructor (private apiService: ApiService,
-               private route: ActivatedRoute) {}
+               private route: ActivatedRoute,
+               private router: Router) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -62,5 +63,9 @@ export class ViewsComponent {
     let start = (curPage - 1) * this.amount;
     let end = start + this.amount;
     this.views = this.fullData.slice(start, end);
+  }
+
+  back() {
+    this.router.navigate(['/']);
   }
 }
