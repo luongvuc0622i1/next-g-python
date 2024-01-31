@@ -38,7 +38,7 @@ export class ViewsComponent {
       let elToAdd = this.amount - (this.fullData.length % this.amount);
       this.fullData = [
         ...this.fullData,
-        ...Array.from({ length: elToAdd }, () => ({}))
+        ...Array.from({ length: elToAdd - 1 }, () => ({}))
       ]
       this.fullData = this.fullData.map((item: any, index: number) => {
         return {
