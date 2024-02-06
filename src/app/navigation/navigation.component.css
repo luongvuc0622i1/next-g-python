@@ -1,0 +1,258 @@
+/* Nội dung dropdown */
+.dropdown-content {
+    display: none;
+    border-radius: 3px;
+    position: absolute;
+    background-color: var(--layout-color);
+    min-width: 200px;
+    z-index: 1;
+    top: 85px;
+    right: 20px;
+}
+
+/* Liên kết trong dropdown */
+.dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    text-decoration: none;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Hiển thị dropdown khi hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Tung VL */
+.header {
+    width: stretch;
+    position: fixed;
+    z-index: 10;
+    padding: 15px 3%;
+    background-color: var(--layout-color);
+    display: grid;
+    column-gap: 5%;
+    align-items: center;
+    grid-template-columns: max-content auto max-content;
+}
+
+.open-menu {
+    margin-right: 3%;
+    display: none;
+}
+
+.header img {
+    height: 35px;
+    min-height: 23px;
+}
+
+.nav-links a {
+    color: var(--primary-color);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.nav-links a:active {
+    color: var(--secondary-active-color);
+}
+
+.nav-actions,
+.nav-links,
+.nav-logo-mb-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-actions {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.nav-actions button {
+    padding: 8px 10px;
+    margin: 5px;
+    font-size: 1rem;
+    border-radius: 3px;
+    box-shadow: var(--box-shadow);
+}
+
+.signup {
+    background-color: var(--primary-background-color);
+}
+
+.signin {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.signup:hover {
+    background-color: var(--primary-color);
+}
+
+.signin:hover {
+    background-color: var(--secondary-active-color);
+}
+
+.username {
+    color: var(--primary-color);
+}
+
+.nav-actions img {
+    border-radius: 50%;
+    height: 40px;
+    aspect-ratio: 1;
+    margin-right: 10px;
+}
+
+.side-menu {
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background-color: #F58926;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10%;
+    display: none;
+}
+
+.side-menu a {
+    color: var(--primary-color);
+    font-size: 3vw;
+}
+
+.close-menu {
+    right: 20px;
+    position: absolute;
+    top: 20px;
+}
+
+.btn-menu {
+    height: 40px;
+    aspect-ratio: 1;
+    background-color: transparent;
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+.footer {
+    background-color: var(--layout-color);
+    padding: 50px 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.ft-content-left {
+    float: left;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.ft-content-right {
+    float: right;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pd20 {
+    margin: 20px 0;
+}
+
+@media only screen and (max-width: 900px) {
+    .header {
+        column-gap: 0%;
+    }
+
+    .open-menu {
+        display: block;
+    }
+
+    .nav-actions {
+        justify-content: end;
+    }
+
+    .nav-actions:hover {
+        border: none;
+    }
+
+    .username,
+    .top-text,
+    .nav-links {
+        display: none;
+    }
+
+    .footer-1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ft-content-left,
+    .ft-content-right {
+        width: 100%;
+    }
+
+    .ft-content-right {
+        padding-top: 50px;
+    }
+
+    .links {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .footer-2>.ft-content-right {
+        padding-top: 20px;
+    }
+}
+
+.app-btn {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    justify-content: center;
+    min-width: 250px;
+    color: #fff;
+    margin: 0 10px;
+    text-align: left;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: "Lucida Grande", sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.blu {
+    background-color: #101010;
+    transition: background-color 0.25s linear;
+}
+
+.app-btn:hover {
+    background-color: #454545;
+}
+
+.big-txt {
+    font-size: 17px;
+    text-transform: capitalize;
+}
+
+.pointer {
+    cursor: pointer;
+}

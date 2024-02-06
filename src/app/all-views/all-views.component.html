@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="sub-container">
+    <div class="parent" *ngIf="loading">
+      <div class="loader child">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+      </div>
+    </div>
+    <div *ngIf="!loading">
+      <table class="styled-table rounded-corners">
+        <thead>
+          <tr>
+            <th colspan="5">
+              <div style="position: relative; display: flex; justify-content: center;">
+                <div style="position: relative; width: 60%;">
+                  <div style="position: absolute; top: 10px; left: 10px; color: #009879;">Website:</div>
+                  <input type="text"
+                    style="outline: none; padding: 12px 15px 12px 80px; border: none; border-radius: 15px; width: -webkit-fill-available;"
+                    [(ngModel)]="inputValue" (ngModelChange)="onInputChange()">
+                </div>
+                <button class="pag" style="position: absolute; top: 5px; right: 0px;" (click)="onload()">↻</button>
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <!-- <th class="long-text-100">STT</th> -->
+            <th class="long-text-200">Website</th>
+            <th class="long-text-200">Title</th>
+            <th class="long-text-500">Description</th>
+            <th class="long-text-100">SĐT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="active-row" *ngFor="let item of views">
+            <!-- <td style="text-align: center;">{{item.title ? item.index : ''}}</td> -->
+            <td>
+              <div style="overflow-y: auto; height: 100px; cursor: pointer;" (click)="navi(item.websiteId)">
+                {{item.websiteName}}</div>
+            </td>
+            <td>
+              <div style="overflow-y: auto; height: 100px;">{{item.websiteDescription.title}}</div>
+            </td>
+            <td>
+              <div style="overflow-y: auto; height: 100px;">{{item.websiteDescription.description}}</div>
+            </td>
+            <td>{{item.websiteDescription.sdt}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <app-pagination *ngIf="condition" [fullData]="fullData" [amount]="amount"
+                (refresh)="refresh($event)"></app-pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

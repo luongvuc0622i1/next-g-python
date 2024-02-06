@@ -11,6 +11,10 @@ const API_URL = environment.apiUrl;
 export class ApiService {
   constructor(private http: HttpClient) { }
 
+  getAll(): Observable<any[]> {
+    return this.http.get<any[]>(`${API_URL}/all`);
+  }
+
   getPages(): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}/getAll`);
   }

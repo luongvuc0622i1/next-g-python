@@ -1,3 +1,4 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 @import url('https://fonts.cdnfonts.com/css/svn-gilroy');
 
 * {
@@ -7,6 +8,18 @@
 
 body {
     margin: 0;
+}
+
+:root {
+    --layout-color: #2f2f2f;
+
+    --primary-color: #ffffff;
+    --primary-background-color: rgb(209, 209, 209);
+    --secondary-color: #009879;
+    /* --secondary-active-color: #ffa24b; */
+    /* --neutral-grey-2: #999; */
+
+    --box-shadow: 5px 5px 5px rgb(84, 84, 84);
 }
 
 .error {
@@ -47,12 +60,12 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
 .sub-container {
     position: absolute;
     width: 80%;
-    top: 50%;
+    top: calc(50% + 45px);
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: left;
@@ -233,38 +246,76 @@ a:focus {
 /* Spinner */
 .loader,
 .bar {
-	width: 60px;
-	height: 20px;
+    width: 60px;
+    height: 20px;
 }
+
 .bar {
-	position: absolute;
-	display: flex;
-	align-items: center;
+    position: absolute;
+    display: flex;
+    align-items: center;
 }
+
 .bar::before,
 .bar::after {
-	content: "";
-	position: absolute;
-	display: block;
-	width: 10px;
-	height: 10px;
-	background: #ffffff;
-	background: #009879;
-	opacity: 0;
-	box-shadow: 1px 1px 4px rgba(0,0,0,.15);
-	border-radius: 10px;
-	animation: slideleft 3s ease-in-out infinite;
+    content: "";
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    background: #009879;
+    opacity: 0;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, .15);
+    border-radius: 10px;
+    animation: slideleft 3s ease-in-out infinite;
 }
 
-.bar1::before { animation-delay: 0.00s }
-.bar1::after  { animation-delay: 0.3s }
-.bar2::before { animation-delay: 0.60s }
-.bar2::after  { animation-delay: 0.90s }
-.bar3::before { animation-delay: 1.20s }
-.bar3::after  { animation-delay: 1.50s }
+.bar1::before {
+    animation-delay: 0.00s
+}
+
+.bar1::after {
+    animation-delay: 0.3s
+}
+
+.bar2::before {
+    animation-delay: 0.60s
+}
+
+.bar2::after {
+    animation-delay: 0.90s
+}
+
+.bar3::before {
+    animation-delay: 1.20s
+}
+
+.bar3::after {
+    animation-delay: 1.50s
+}
 
 @keyframes slideleft {
-	10% { opacity: 0; transform: scale(0); right: 0 }
-	50% { opacity: 1; transform: scale(1) }
-	90% { opacity: 0; transform: scale(0); right: 100% }
+    10% {
+        opacity: 0;
+        transform: scale(0);
+        right: 0
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1)
+    }
+
+    90% {
+        opacity: 0;
+        transform: scale(0);
+        right: 100%
+    }
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondary-color);
 }

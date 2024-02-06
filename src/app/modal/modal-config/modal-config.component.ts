@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ApiService } from '../service/api.service';
-import { TransferService } from '../service/transfer.service';
+import { ApiService } from '../../service/api.service';
+import { TransferService } from '../../service/transfer.service';
 
 @Component({
   selector: 'app-modal-config',

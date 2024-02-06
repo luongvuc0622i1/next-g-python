@@ -20,6 +20,11 @@ export class PaginationComponent {
     this.numOfPages = Math.floor(this.fullData.length/this.amount);
     this.pageNumbers = Array.from({ length: this.numOfPages }, (_, index) => index + 1);
   }
+  
+  ngOnChanges(): void {
+    this.numOfPages = Math.floor(this.fullData.length/this.amount);
+    this.pageNumbers = Array.from({ length: this.numOfPages }, (_, index) => index + 1);
+  }
 
   firstPage() {
     this.curPage = 1;

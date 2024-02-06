@@ -33,19 +33,18 @@ export class ViewsComponent {
     this.loading = true;
     this.fullData = [];
     this.apiService.getView(this.id).subscribe(response => {
-      this.fullData = response;
-
-      let elToAdd = this.amount - (this.fullData.length % this.amount);
-      this.fullData = [
-        ...this.fullData,
-        ...Array.from({ length: elToAdd - 1 }, () => ({}))
-      ]
-      this.fullData = this.fullData.map((item: any, index: number) => {
+      this.fullData = response.map((item: any, index: number) => {
         return {
           index: index + 1,
           ...item
         };
       });
+
+      let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
+      this.fullData = [
+        ...this.fullData,
+        ...Array.from({ length: elToAdd - 1 }, () => ({}))
+      ]
       this.condition = true;
       this.refresh(1);
       this.loading = false;
@@ -66,6 +65,7 @@ export class ViewsComponent {
   }
 
   back() {
-    this.router.navigate(['/']);
+    // this.router.navigate(['/']);
+    window.history.back();
   }
 }
