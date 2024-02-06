@@ -12,6 +12,7 @@ export class TransferService {
       'showModal': false,
       'showModalConfig': false,
       'showModalSignin': false,
+      'idSignup': 0,
       'showModalSignup': false
     }
   );
@@ -27,6 +28,12 @@ export class TransferService {
   setId(i: number) {
     let val = this._sharedData.value;
     val.id = i;
+    this._sharedData.next(val);
+  }
+
+  setIdSignup(i: number) {
+    let val = this._sharedData.value;
+    val.idSignup = i;
     this._sharedData.next(val);
   }
 

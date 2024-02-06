@@ -11,8 +11,6 @@ import { TokenService } from '../service/token.service';
 })
 export class NavigationComponent {
   isTokenValid: boolean = false;
-  @Output() openModalSignin = new EventEmitter<void>();
-  @Output() openModalSignup = new EventEmitter<void>();
   count: number = 0;
   username: any;
   role: any;
@@ -59,14 +57,6 @@ export class NavigationComponent {
       localStorage.clear();
       this.router.navigate(['/']);
     }, () => { });
-  }
-
-  goToSignIn() {
-    this.openModalSignin.emit()
-  }
-
-  goToSignup() {
-    this.openModalSignup.emit()
   }
 
   onClick(navi: string) {

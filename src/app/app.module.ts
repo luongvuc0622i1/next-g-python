@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +17,7 @@ import { ModalSignupComponent } from './modal/modal-signup/modal-signup.componen
 import { LandingComponent } from './landing/landing.component';
 import { ModalNewPasswordComponent } from './modal/modal-new-password/modal-new-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AccountsComponent } from './accounts/accounts.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AllViewsComponent,
     NavigationComponent,
     LandingComponent,
+    AccountsComponent,
     NotFoundComponent
   ],
   imports: [

@@ -46,4 +46,16 @@ export class ApiService {
   getView(id: number): Observable<any[]> {
     return this.http.get<any>(`${API_URL}/getAllData/${id}`);
   }
+
+  getAccounts(): Observable<any[]> {
+    return this.http.get<any[]>(`${API_URL}/list-user`);
+  }
+
+  getAccount(id: number): Observable<any> {
+    return this.http.get<any>(`${API_URL}/user-info/${id}`);
+  }
+
+  deleteAccount(id: number): Observable<any> {
+    return this.http.delete<any>(`${API_URL}/delete-user/${id}`);
+  }
 }

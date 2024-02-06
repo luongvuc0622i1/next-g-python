@@ -35,19 +35,27 @@ export class AppComponent {
   }
 
   closeModal(): void {
-    this.showModal = false;
-    this.showModalConfig = false;
-    this.showModalSignin = false;
-    this.showModalSignup = false;
+    // this.showModal = false;
+    // this.showModalConfig = false;
+    // this.showModalSignin = false;
+    // this.showModalSignup = false;
+    this.transferService.setShowModal(false);
+    this.transferService.setShowModalConfig(false);
+    this.transferService.setShowModalSignin(false);
+    this.transferService.setShowModalSignup(false);
     this.showModalNewPassword = false;
   }
 
   handleClose(event: MouseEvent): void {
-    if (!(event.target as HTMLElement).closest('.modal-content') && !this.showModalSignin) {
-      this.showModal = false;
-      this.showModalConfig = false;
-      this.showModalSignin = false;
-      this.showModalSignup = false;
+    if (!(event.target as HTMLElement).closest('.modal-content') && !this.showModalSignin && !this.showModalNewPassword) {
+      this.transferService.setShowModal(false);
+      this.transferService.setShowModalConfig(false);
+      this.transferService.setShowModalSignin(false);
+      this.transferService.setShowModalSignup(false);
+      // this.showModal = false;
+      // this.showModalConfig = false;
+      // this.showModalSignin = false;
+      // this.showModalSignup = false;
       this.showModalNewPassword = false;
     }
   }

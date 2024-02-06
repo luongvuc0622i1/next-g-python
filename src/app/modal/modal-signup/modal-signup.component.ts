@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ApiService } from 'src/app/service/api.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { TransferService } from 'src/app/service/transfer.service';
 
@@ -13,13 +14,30 @@ export class ModalSignupComponent {
   statusEmail: string = '';
   statusUsername: string = '';
   statusRole: string = '';
+  idAccount: number = 0;
   formSignup: FormGroup = new FormGroup({
     email: new FormControl(),
     username: new FormControl(),
     user_role: new FormControl(),
   });
   arr: string[] = ['email', 'username', 'user_role'];
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private apiService: ApiService,
+    private transferService: TransferService) { }
+
+  ngOnInit(): void {
+    this.transferService.sharedData$.subscribe((data) => {
+      this.idAccount = data.idSignup;
+    });
+    if (!this.idAccount) return;
+    this.apiService.getAccount(this.idAccount).subscribe(response => {
+      this.formSignup.patchValue({
+        'email': response.email,
+        'username': response.username,
+        'user_role': response.user_role,
+      });
+    });
+  }
 
   ngDoCheck(): void {
     this.arr.forEach(element => {

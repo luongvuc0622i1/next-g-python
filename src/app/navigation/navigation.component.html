@@ -15,12 +15,9 @@
     <div id="nav-dropdown" class="dropdown-content">
       <div (click)="onClick('home')"><a><i class="fa-solid fa-house"></i>  Home</a></div>
       <div (click)="onClick('config')"><a><i class="fa-solid fa-gear"></i>  Configuration</a></div>
-      <div (click)="goToSignup()" *ngIf="role"><a><i class="fa-solid fa-user"></i>  Create Account</a></div>
+      <div (click)="onClick('accounts')" *ngIf="role === 'Admin'"><a><i class="fa-solid fa-user"></i>  Manager Account</a></div>
       <div class="divider"></div>
       <div (click)="logout()"><a><i class="fa-solid fa-right-from-bracket"></i>  Logout</a></div>
     </div>
-  </div>
-  <div class="nav-actions" *ngIf="!isTokenValid">
-    <button class="signin pointer" (click)="goToSignIn()">Sign In</button>
   </div>
 </div>

@@ -69,9 +69,4 @@ export class ViewsComponent {
     // this.router.navigate(['/']);
     window.history.back();
   }
-
-  openModalSignup() {
-    this.transferService.setShowModal(true);
-    this.transferService.setShowModalSignup(true);
-  }
 }

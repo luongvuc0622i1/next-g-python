@@ -1,0 +1,46 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="sub-container">
+    <table class="styled-table rounded-corners">
+      <thead>
+        <tr>
+          <th colspan="6">
+            <div style="position: relative;">
+              <div style="font-size: 30px;">Quản lý tài khoản</div>
+              <button class="pag" style="position: absolute; top: 5px; right: 0px;" (click)="create()">+</button>
+            </div>
+          </th>
+        </tr>
+        <tr>
+          <th class="long-text-100">STT</th>
+          <th class="long-text-300">Username</th>
+          <th class="long-text-300">Email</th>
+          <th class="long-text-100">Role</th>
+          <th class="long-text-200" colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="active-row" *ngFor="let item of accounts">
+          <td style="text-align: center;">{{item.email ? item.index : ''}}</td>
+          <td>{{item.username}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.user_role}}</td>
+          <td class="button-center">
+            <button class="rec-green" (click)="edit(item.id)" *ngIf="item.email">Edit</button>
+          </td>
+          <td class="button-center">
+            <button class="rec-green" style="background-color: brown;" (click)="delete(item.id)" *ngIf="item.email && item.user_role.toLowerCase() !== 'admin'">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6">
+            <app-pagination *ngIf="condition" [fullData]="fullData" [amount]="amount"
+              (refresh)="refresh($event)"></app-pagination>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

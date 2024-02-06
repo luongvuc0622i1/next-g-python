@@ -6,6 +6,7 @@ import { AllViewsComponent } from './all-views/all-views.component';
 import { AuthGuard } from './service/auth.guard';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AccountsComponent } from './accounts/accounts.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'config', canActivate: [AuthGuard],
     component: PagesComponent
+  },
+  {
+    path: 'accounts', canActivate: [AuthGuard],
+    component: AccountsComponent
   },
   {
     path: 'home', canActivate: [AuthGuard],

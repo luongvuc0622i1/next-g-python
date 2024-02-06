@@ -87,9 +87,4 @@ export class AllViewsComponent {
   navi(id: string): void {
     this.router.navigate(['/page', id]);
   }
-
-  openModalSignup() {
-    this.transferService.setShowModal(true);
-    this.transferService.setShowModalSignup(true);
-  }
 }
