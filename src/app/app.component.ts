@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { TransferService } from './service/transfer.service';
 
 @Component({
@@ -14,23 +13,15 @@ export class AppComponent {
   showModalSignup: boolean = false;
   showModalNewPassword: boolean = false;
 
-  constructor(private transferService: TransferService,
-    private route: ActivatedRoute) {}
+  constructor(private transferService: TransferService) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      const email = params['email'];
-      const password = params['password'];
-      if (email && password) {
-        this.showModal = true;
-        this.showModalNewPassword = true;
-      }
-    });
     this.transferService.sharedData$.subscribe((data) => {
       this.showModal = data.showModal;
       this.showModalConfig = data.showModalConfig;
       this.showModalSignin = data.showModalSignin;
       this.showModalSignup = data.showModalSignup;
+      this.showModalNewPassword = data.showModalNewPassword;
     });
   }
 

@@ -13,7 +13,8 @@ export class TransferService {
       'showModalConfig': false,
       'showModalSignin': false,
       'idSignup': 0,
-      'showModalSignup': false
+      'showModalSignup': false,
+      'showModalNewPassword': false
     }
   );
 
@@ -58,6 +59,12 @@ export class TransferService {
   setShowModalSignup(boo: boolean) {
     let val = this._sharedData.value;
     val.showModalSignup = boo;
+    this._sharedData.next(val);
+  }
+
+  setShowModalNewPassword(boo: boolean) {
+    let val = this._sharedData.value;
+    val.showModalNewPassword = boo;
     this._sharedData.next(val);
   }
 }
