@@ -5,7 +5,7 @@ import { ViewsComponent } from './views/views.component';
 import { AllViewsComponent } from './all-views/all-views.component';
 import { AuthGuard } from './service/auth.guard';
 import { LandingComponent } from './landing/landing.component';
-import { AppComponent } from './app.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'home', canActivate: [AuthGuard],
     component: AllViewsComponent
+  },
+  {
+    path: 'changePassword',
+    component: NotFoundComponent
   },
   {
     path: '**',

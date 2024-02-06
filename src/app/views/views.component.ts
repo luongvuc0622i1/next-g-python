@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
+import { TransferService } from '../service/transfer.service';
 
 @Component({
   selector: 'app-views',
@@ -20,7 +21,7 @@ export class ViewsComponent {
 
   constructor (private apiService: ApiService,
                private route: ActivatedRoute,
-               private router: Router) {}
+               private transferService: TransferService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -67,5 +68,10 @@ export class ViewsComponent {
   back() {
     // this.router.navigate(['/']);
     window.history.back();
+  }
+
+  openModalSignup() {
+    this.transferService.setShowModal(true);
+    this.transferService.setShowModalSignup(true);
   }
 }

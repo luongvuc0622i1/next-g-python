@@ -71,11 +71,9 @@ export class ModalSigninComponent {
     const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
     if (!this.formSignin.value.password) {
       this.statusPassword = 'Password is require';
-    } 
-    // else if (!passwordRegex.test(this.formSignin.value.password)) {
-    //   this.statusPassword = 'Minimum is 8 characters with at least 1 upcase';
-    // } 
-    else this.statusPassword = '';
+    } else if (!passwordRegex.test(this.formSignin.value.password)) {
+      this.statusPassword = 'Minimum is 8 characters with at least 1 upcase';
+    } else this.statusPassword = '';
   }
 
   toggleEye(event: any) {
@@ -92,9 +90,5 @@ export class ModalSigninComponent {
       eyeClosed.style.display = (inputField.type === 'password') ? 'initial' : 'none';
       eyeOpen.style.display = (inputField.type === 'password') ? 'none' : 'initial';
     }
-  }
-
-  back() {
-    this.closeModal.emit();
   }
 }

@@ -9,7 +9,10 @@ export class TransferService {
   private _sharedData = new BehaviorSubject<any>(
     {
       'id': 0,
-      'showModal': false
+      'showModal': false,
+      'showModalConfig': false,
+      'showModalSignin': false,
+      'showModalSignup': false
     }
   );
 
@@ -30,6 +33,24 @@ export class TransferService {
   setShowModal(boo: boolean) {
     let val = this._sharedData.value;
     val.showModal = boo;
+    this._sharedData.next(val);
+  }
+
+  setShowModalConfig(boo: boolean) {
+    let val = this._sharedData.value;
+    val.showModalConfig = boo;
+    this._sharedData.next(val);
+  }
+
+  setShowModalSignin(boo: boolean) {
+    let val = this._sharedData.value;
+    val.showModalSignin = boo;
+    this._sharedData.next(val);
+  }
+
+  setShowModalSignup(boo: boolean) {
+    let val = this._sharedData.value;
+    val.showModalSignup = boo;
     this._sharedData.next(val);
   }
 }

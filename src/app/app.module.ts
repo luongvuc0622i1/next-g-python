@@ -17,6 +17,7 @@ import { Auth_interceptor } from './service/auth_interceptor';
 import { ModalSignupComponent } from './modal/modal-signup/modal-signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { ModalNewPasswordComponent } from './modal/modal-new-password/modal-new-password.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ModalNewPasswordComponent } from './modal/modal-new-password/modal-new-
     PaginationComponent,
     AllViewsComponent,
     NavigationComponent,
-    LandingComponent
+    LandingComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

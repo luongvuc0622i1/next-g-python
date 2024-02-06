@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { TokenService } from './token.service';
 import { Observable } from 'rxjs';
 import { JwtResponse } from '../model/jwt-response';
+import { TransferService } from './transfer.service';
 
 const API_URL = environment.apiUrl + '/auth';
 
@@ -15,6 +16,7 @@ export class AuthService {
 
   constructor(private http: HttpClient,
     private tokenService: TokenService,
+    private transferService: TransferService,
     private router: Router) { }
 
   signInSuccess(data: any) {
@@ -25,6 +27,8 @@ export class AuthService {
       this.tokenService.setUsername(data.username);
       this.tokenService.setUserImage(data.user_image);
       this.tokenService.setUserRole(data.user_role);
+      this.transferService.setShowModal(false);
+      this.transferService.setShowModalSignin(false);
 
       this.router.navigate(['/home']);
     }

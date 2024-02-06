@@ -62,11 +62,18 @@ export class PagesComponent {
 
   config(id: string): void {
     this.transferService.setId(parseInt(id));
+    this.transferService.setShowModalConfig(true);
     this.transferService.setShowModal(true);
   }
 
   create(): void {
     this.transferService.setId(0);
+    this.transferService.setShowModalConfig(true);
     this.transferService.setShowModal(true);
+  }
+
+  openModalSignup() {
+    this.transferService.setShowModal(true);
+    this.transferService.setShowModalSignup(true);
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TransferService } from '../service/transfer.service';
 
 @Component({
   selector: 'app-landing',
@@ -25,4 +26,11 @@ export class LandingComponent {
       'description': 'Hỗ trợ đăng ký tạo tài khoản sử dụng từ email. Chỉ cần nhập email và mật khẩu, chúng tôi'
     }
   ];
+
+  constructor(private transferService: TransferService) {}
+
+  ngOnInit(): void {
+    this.transferService.setShowModal(true);
+    this.transferService.setShowModalSignin(true);
+  }
 }

@@ -28,7 +28,9 @@ export class AppComponent {
     });
     this.transferService.sharedData$.subscribe((data) => {
       this.showModal = data.showModal;
-      this.showModalConfig = data.showModal;
+      this.showModalConfig = data.showModalConfig;
+      this.showModalSignin = data.showModalSignin;
+      this.showModalSignup = data.showModalSignup;
     });
   }
 
@@ -41,22 +43,12 @@ export class AppComponent {
   }
 
   handleClose(event: MouseEvent): void {
-    if (!(event.target as HTMLElement).closest('.modal-content')) {
+    if (!(event.target as HTMLElement).closest('.modal-content') && !this.showModalSignin) {
       this.showModal = false;
       this.showModalConfig = false;
       this.showModalSignin = false;
       this.showModalSignup = false;
       this.showModalNewPassword = false;
     }
-  }
-
-  openModalSignin(): void {
-    this.showModal = true;
-    this.showModalSignin = true;
-  }
-
-  openModalSignup(): void {
-    this.showModal = true;
-    this.showModalSignup = true;
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
+import { TransferService } from '../service/transfer.service';
 
 @Component({
   selector: 'app-all-views',
@@ -18,7 +19,8 @@ export class AllViewsComponent {
   loading: boolean = true;
 
   constructor(private apiService: ApiService,
-    private router: Router) { }
+    private router: Router,
+    private transferService: TransferService) { }
 
   ngOnInit(): void {
     this.onload();
@@ -84,5 +86,10 @@ export class AllViewsComponent {
 
   navi(id: string): void {
     this.router.navigate(['/page', id]);
+  }
+
+  openModalSignup() {
+    this.transferService.setShowModal(true);
+    this.transferService.setShowModalSignup(true);
   }
 }
