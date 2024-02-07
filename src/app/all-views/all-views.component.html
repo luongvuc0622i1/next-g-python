@@ -29,7 +29,7 @@
             <th class="long-text-200">Website</th>
             <th class="long-text-200">Title</th>
             <th class="long-text-500">Description</th>
-            <th class="long-text-100">SĐT</th>
+            <th class="long-text-100">Link</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +45,11 @@
             <td>
               <div style="overflow-y: auto; height: 100px;">{{item.websiteDescription.description}}</div>
             </td>
-            <td>{{item.websiteDescription.sdt}}</td>
+            <td class="button-center">
+              <a href={{item.websiteDescription.link}} target="_blank">
+                <button class="rec-green" *ngIf="item.websiteName">Link</button>
+              </a>
+            </td>
           </tr>
         </tbody>
         <tfoot>

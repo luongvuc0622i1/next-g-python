@@ -25,7 +25,7 @@
             <th class="long-text-100">STT</th>
             <th class="long-text-200">Title</th>
             <th class="long-text-500">Description</th>
-            <th class="long-text-200">SĐT</th>
+            <th class="long-text-200">Link</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,11 @@
             <td>
               <div style="overflow-y: auto; height: 100px;">{{item.description}}</div>
             </td>
-            <td>{{item.sdt}}</td>
+            <td class="button-center">
+              <a href={{item.link}} target="_blank">
+                <button class="rec-green" *ngIf="item.title">Link</button>
+              </a>
+            </td>
           </tr>
         </tbody>
         <tfoot>
