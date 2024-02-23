@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
-import { TransferService } from '../service/transfer.service';
 
 @Component({
   selector: 'app-views',
@@ -20,8 +19,7 @@ export class ViewsComponent {
   loading: boolean = true;
 
   constructor (private apiService: ApiService,
-               private route: ActivatedRoute,
-               private transferService: TransferService) {}
+               private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -66,7 +64,6 @@ export class ViewsComponent {
   }
 
   back() {
-    // this.router.navigate(['/']);
     window.history.back();
   }
 }

@@ -12,7 +12,7 @@
       <table class="styled-table rounded-corners">
         <thead>
           <tr>
-            <th colspan="4">
+            <th colspan="6">
               <div style="position: relative;">
                 <button class="pag" style="position: absolute; top: 5px; left: 0px; transform: scaleX(-1);"
                   (click)="back()">➦</button>
@@ -22,10 +22,12 @@
             </th>
           </tr>
           <tr>
-            <th class="long-text-100">STT</th>
+            <th class="long-text-50">STT</th>
             <th class="long-text-200">Title</th>
-            <th class="long-text-500">Description</th>
-            <th class="long-text-200">Link</th>
+            <th class="long-text-150">Seller</th>
+            <th class="long-text-400">Detail</th>
+            <th class="long-text-100">Price</th>
+            <th class="long-text-100"></th>
           </tr>
         </thead>
         <tbody>
@@ -35,10 +37,17 @@
               <div style="overflow-y: auto; height: 100px;">{{item.title}}</div>
             </td>
             <td>
-              <div style="overflow-y: auto; height: 100px;">{{item.description}}</div>
+              <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px; gap: 10px;">
+                <div>{{item.seller_user}}</div>
+                <div>{{item.seller_phone}}</div>
+              </div>
             </td>
+            <td>
+              <div style="overflow-y: auto; height: 100px;">{{item.detail}}</div>
+            </td>
+            <td>{{item.price}}</td>
             <td class="button-center">
-              <a href={{item.link}} target="_blank">
+              <a href={{item.url}} target="_blank">
                 <button class="rec-green" *ngIf="item.title">Link</button>
               </a>
             </td>
@@ -46,7 +55,7 @@
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="5">
+            <td colspan="6">
               <app-pagination *ngIf="condition" [fullData]="fullData" [amount]="amount"
                 (refresh)="refresh($event)"></app-pagination>
             </td>

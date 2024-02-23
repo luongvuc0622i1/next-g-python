@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
-import { TransferService } from '../service/transfer.service';
 
 @Component({
   selector: 'app-all-views',
@@ -19,8 +18,7 @@ export class AllViewsComponent {
   loading: boolean = true;
 
   constructor(private apiService: ApiService,
-    private router: Router,
-    private transferService: TransferService) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.onload();
@@ -30,15 +28,6 @@ export class AllViewsComponent {
     this.loading = true;
     this.fullDataOrigin = [];
     this.apiService.getAll().subscribe(response => {
-      // this.fullDataOrigin = response.map((item: any) => {
-      //   return {
-      //     title: Object.fromEntries(item.websiteDescription.match(/(\w+):\s?([\w,]+)/g).map((pair: string) => pair.split(':').map(item => item.trim())))['title'],
-      //     description: Object.fromEntries(item.websiteDescription.match(/(\w+):\s?([\w,]+)/g).map((pair: string) => pair.split(':').map(item => item.trim())))['description'],
-      //     sdt: Object.fromEntries(item.websiteDescription.match(/(\w+):\s?([\w,]+)/g).map((pair: string) => pair.split(':').map(item => item.trim())))['SĐT'],
-      //     ...item
-      //   };
-      // });
-
       this.fullDataOrigin = response.flatMap(item => {
         return item.websiteDescription.map((description: any) => {
           return {

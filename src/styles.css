@@ -127,8 +127,16 @@ button {
     color: #009879;
 }
 
+.styled-table .long-text-50 {
+    width: 5%;
+}
+
 .styled-table .long-text-100 {
     width: 10%;
+}
+
+.styled-table .long-text-150 {
+    width: 15%;
 }
 
 .styled-table .long-text-200 {
@@ -137,6 +145,10 @@ button {
 
 .styled-table .long-text-300 {
     width: 30%;
+}
+
+.styled-table .long-text-400 {
+    width: 40%;
 }
 
 .styled-table .long-text-500 {
