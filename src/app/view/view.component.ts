@@ -1,47 +1,57 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-all-views',
-  templateUrl: './all-views.component.html',
-  styleUrl: './all-views.component.css'
+  selector: 'app-view',
+  templateUrl: './view.component.html',
+  styleUrl: './view.component.css'
 })
-export class AllViewsComponent {
+export class ViewComponent {
   views: any;
   fullDataOrigin: any;
   fullData: any;
   amount: number = 5;
   condition: boolean = false;
-  inputValue: string = '';
+
+  namePage: any;
+  id: number = 0;
 
   loading: boolean = true;
 
+  inputTitle: string = '';
+  inputSeller: string = '';
+  inputPrice: string = '';
+
+  search1: boolean = false;
+  search2: boolean = false;
+  search3: boolean = false;
+
   constructor(private apiService: ApiService,
-    private router: Router) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = parseInt(params['id']);
+    });
     this.onload();
   }
 
   onload(): void {
     this.loading = true;
     this.fullDataOrigin = [];
-    this.apiService.getAll().subscribe(response => {
-      this.fullDataOrigin = response.flatMap(item => {
-        return item.websiteDescription.map((description: any) => {
-          return {
-            websiteName: item.websiteName,
-            websiteDescription: description,
-            websiteId: item.websiteId
-          };
-        });
+    this.apiService.getView(this.id).subscribe(response => {
+      this.fullDataOrigin = response.map((item: any, index: number) => {
+        return {
+          index: index + 1,
+          ...item
+        };
       });
 
       let elToAdd = this.fullDataOrigin.length % this.amount ? this.amount - (this.fullDataOrigin.length % this.amount) : 0;
       this.fullDataOrigin = [
         ...this.fullDataOrigin,
-        ...Array.from({ length: elToAdd }, () => ({}))
+        ...Array.from({ length: elToAdd - 1 }, () => ({}))
       ]
       this.condition = true;
       this.fullData = this.fullDataOrigin;
@@ -53,6 +63,9 @@ export class AllViewsComponent {
       this.refresh(1);
       this.loading = false;
     });
+    this.apiService.getNamePage(this.id).subscribe(response => {
+      this.namePage = response.name;
+    });
   }
 
   refresh(curPage: number): void {
@@ -62,7 +75,12 @@ export class AllViewsComponent {
   }
 
   onInputChange(): void {
-    this.fullData = this.fullDataOrigin.filter((item: { websiteName: string | string[]; }) => item.websiteName && item.websiteName.includes(this.inputValue));
+    this.fullData = this.fullDataOrigin.filter(
+      (item: { title: string; seller_user: string; price: string; }) =>
+        (item.title && item.title.includes(this.inputTitle)) &&
+        (item.seller_user && item.seller_user.includes(this.inputSeller)) &&
+        (item.price && item.price.includes(this.inputPrice))
+    );
 
     let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
     this.fullData = [
@@ -73,7 +91,7 @@ export class AllViewsComponent {
     this.refresh(1);
   }
 
-  navi(id: string): void {
-    this.router.navigate(['/page', id]);
+  back() {
+    window.history.back();
   }
 }

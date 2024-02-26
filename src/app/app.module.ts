@@ -3,13 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ViewsComponent } from './views/views.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalConfigComponent } from './modal/modal-config/modal-config.component';
 import { TransferService } from './service/transfer.service';
 import { PaginationComponent } from './pagination/pagination.component';
-import { AllViewsComponent } from './all-views/all-views.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ModalSigninComponent } from './modal/modal-signin/modal-signin.component';
 import { Auth_interceptor } from './service/auth_interceptor';
@@ -18,18 +16,20 @@ import { LandingComponent } from './landing/landing.component';
 import { ModalNewPasswordComponent } from './modal/modal-new-password/modal-new-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { HomeComponent } from './home/home.component';
+import { ViewComponent } from './view/view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     PagesComponent,
-    ViewsComponent,
+    ViewComponent,
     ModalConfigComponent,
     ModalSigninComponent,
     ModalSignupComponent,
     ModalNewPasswordComponent,
     PaginationComponent,
-    AllViewsComponent,
     NavigationComponent,
     LandingComponent,
     AccountsComponent,

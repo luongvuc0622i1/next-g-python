@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages/pages.component';
-import { ViewsComponent } from './views/views.component';
-import { AllViewsComponent } from './all-views/all-views.component';
 import { AuthGuard } from './service/auth.guard';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { HomeComponent } from './home/home.component';
+import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {
     path: 'page/:id', canActivate: [AuthGuard],
-    component: ViewsComponent
+    component: ViewComponent
   },
   {
     path: 'config', canActivate: [AuthGuard],
@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'home', canActivate: [AuthGuard],
-    component: AllViewsComponent
+    component: HomeComponent
   },
   {
     path: 'changePassword',
