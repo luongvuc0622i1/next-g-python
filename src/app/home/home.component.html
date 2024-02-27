@@ -36,7 +36,7 @@
                   <input class="input-search w-100" type="text" [(ngModel)]="inputWebsite"
                     (ngModelChange)="onInputChange()">
                   <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search1 = false">
+                    (click)="search1 = false; inputWebsite = ''; onInputChange()">
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
@@ -53,7 +53,7 @@
                   <input class="input-search w-100" type="text" [(ngModel)]="inputTitle"
                     (ngModelChange)="onInputChange()">
                   <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search2 = false">
+                    (click)="search2 = false; inputTitle = ''; onInputChange()">
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
@@ -70,7 +70,7 @@
                   <input class="input-search w-100" type="text" [(ngModel)]="inputSeller"
                     (ngModelChange)="onInputChange()">
                   <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search3 = false">
+                    (click)="search3 = false; inputSeller = ''; onInputChange()">
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
@@ -88,7 +88,7 @@
                   <input class="input-search w-100" type="text" [(ngModel)]="inputPrice"
                     (ngModelChange)="onInputChange()">
                   <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search4 = false">
+                    (click)="search4 = false; inputPrice = ''; onInputChange()">
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>

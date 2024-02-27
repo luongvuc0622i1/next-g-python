@@ -29,7 +29,7 @@
                 <input class="input-search w-100" type="text" [(ngModel)]="inputWebsitename"
                   (ngModelChange)="onInputChange()">
                 <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                  (click)="search1 = false">
+                  (click)="search1 = false; inputWebsitename = ''; onInputChange()">
                   <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                 </button>
               </div>
@@ -46,7 +46,7 @@
                 <input class="input-search w-100" type="text" [(ngModel)]="inputWebsiteurl"
                   (ngModelChange)="onInputChange()">
                 <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                  (click)="search2 = false">
+                  (click)="search2 = false; inputWebsiteurl = ''; onInputChange()">
                   <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                 </button>
               </div>

@@ -36,7 +36,7 @@
                 <div class="relative sub-header" style="margin: 10px;" *ngIf="search1">
                   <input class="input-search w-100" type="text" [(ngModel)]="inputTitle" (ngModelChange)="onInputChange()">
                   <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search1 = false">
+                    (click)="search1 = false; inputTitle = ''; onInputChange()">
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="relative sub-header" style="margin: 10px;" *ngIf="search2">
                   <input class="input-search w-100" type="text" [(ngModel)]="inputSeller" (ngModelChange)="onInputChange()">
                   <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search2 = false">
+                    (click)="search2 = false; inputSeller = ''; onInputChange()">
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="relative sub-header" style="margin: 10px;" *ngIf="search3">
                   <input class="input-search w-100" type="text" [(ngModel)]="inputPrice" (ngModelChange)="onInputChange()">
                   <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search3 = false">
+                    (click)="search3 = false; inputPrice = ''; onInputChange()">
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
