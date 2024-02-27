@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { PagesComponent } from './pages/pages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,13 +17,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './view/view.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PagesComponent,
     ViewComponent,
+    ConfigurationComponent,
     ModalConfigComponent,
     ModalSigninComponent,
     ModalSignupComponent,

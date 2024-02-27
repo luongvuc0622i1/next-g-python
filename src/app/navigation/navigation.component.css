@@ -7,7 +7,7 @@
     min-width: 200px;
     z-index: 1;
     top: 85px;
-    right: 20px;
+    right: 150px;
 }
 
 /* Liên kết trong dropdown */
@@ -34,7 +34,7 @@
     width: stretch;
     position: fixed;
     z-index: 10;
-    padding: 15px 3%;
+    padding: 15px 150px;
     background-color: var(--layout-color);
     display: grid;
     column-gap: 5%;

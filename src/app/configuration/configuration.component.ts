@@ -5,15 +5,22 @@ import { TransferService } from '../service/transfer.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-pages',
-  templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.css']
+  selector: 'app-configuration',
+  templateUrl: './configuration.component.html',
+  styleUrl: './configuration.component.css'
 })
-export class PagesComponent {
+export class ConfigurationComponent {
   pages: any;
   amount: number = 10;
+  fullDataOrigin: any;
   fullData: any;
   condition: boolean = false;
+  
+  inputWebsitename: string = '';
+  inputWebsiteurl: string = '';
+
+  search1: boolean = false;
+  search2: boolean = false;
 
   private subscription?: Subscription;
 
@@ -30,22 +37,24 @@ export class PagesComponent {
 
   onload(): void {
     this.apiService.getPages().subscribe(response => {
-      this.fullData = response.map((item: any, index: number) => {
+      this.fullDataOrigin = response.map((item: any, index: number) => {
         return {
           index: index + 1,
           ...item
         };
       });
 
-      let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
-      this.fullData = [
-        ...this.fullData,
+      let elToAdd = this.fullDataOrigin.length % this.amount ? this.amount - (this.fullDataOrigin.length % this.amount) : 0;
+      this.fullDataOrigin = [
+        ...this.fullDataOrigin,
         ...Array.from({ length: elToAdd }, () => ({}))
       ]
       this.condition = true;
+      this.fullData = this.fullDataOrigin;
       this.refresh(1);
     }, () => {
-      this.fullData = Array.from({ length: this.amount }, () => ({}));
+      this.fullDataOrigin = Array.from({ length: this.amount }, () => ({}));
+      this.fullData = this.fullDataOrigin;
       this.refresh(1);
     });
   }
@@ -70,5 +79,21 @@ export class PagesComponent {
     this.transferService.setId(0);
     this.transferService.setShowModalConfig(true);
     this.transferService.setShowModal(true);
+  }
+
+  onInputChange(): void {
+    this.fullData = this.fullDataOrigin.filter(
+      (item: { website_name: string; website_url: string; }) =>
+        (item.website_name && item.website_name.includes(this.inputWebsitename)) &&
+        (item.website_url && item.website_url.includes(this.inputWebsiteurl))
+    );
+
+    let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
+    this.fullData = [
+      ...this.fullData,
+      ...Array.from({ length: elToAdd }, () => ({}))
+    ]
+    this.condition = true;
+    this.refresh(1);
   }
 }

@@ -21,6 +21,8 @@ body {
 :root {    
     --layout-color: #2f2f2f;
 
+    --primary-blue-color: #314DD3;
+    --error-color: #FF3830;
     --primary-color: #ffffff;
     --primary-background-color: rgb(209, 209, 209);
     --secondary-color: #f58926;
@@ -33,7 +35,7 @@ body {
 .error {
     margin-top: 4px;
     text-align: left;
-    color: red;
+    color: var(--error-color);
     font-size: 14px;
     font-weight: 500;
     line-height: 20px;
@@ -219,7 +221,7 @@ button {
     width: 384px;
     height: auto;
     transform: translate(-50%, -50%);
-    background-color: white;
+    background-color: var(--primary-color);
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     border-radius: 12px;
@@ -382,4 +384,16 @@ a:focus {
 .img-nextG {
     width: 138px;
     height: 32px;
+}
+
+.pri-button:hover {
+    background-color: var(--primary-blue-color);
+}
+
+.edit-button:hover {
+    background-color: var(--secondary-active-color);
+}
+
+.delete-button:hover {
+    background-color: var(--error-color);
 }

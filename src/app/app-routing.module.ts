@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PagesComponent } from './pages/pages.component';
 import { AuthGuard } from './service/auth.guard';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './view/view.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 const routes: Routes = [
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'config', canActivate: [AuthGuard],
-    component: PagesComponent
+    component: ConfigurationComponent
   },
   {
     path: 'accounts', canActivate: [AuthGuard],

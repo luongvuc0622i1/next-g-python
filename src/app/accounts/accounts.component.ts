@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../service/api.service';
-import { Router } from '@angular/router';
 import { TransferService } from '../service/transfer.service';
 
 @Component({
@@ -12,13 +11,19 @@ import { TransferService } from '../service/transfer.service';
 export class AccountsComponent {
   accounts: any;
   amount: number = 10;
+  fullDataOrigin: any;
   fullData: any;
   condition: boolean = false;
+
+  inputUsername: string = '';
+  inputEmail: string = '';
+
+  search1: boolean = false;
+  search2: boolean = false;
 
   private subscription?: Subscription;
 
   constructor(private apiService: ApiService,
-    private router: Router,
     private transferService: TransferService) { }
 
   ngOnInit(): void {
@@ -30,22 +35,24 @@ export class AccountsComponent {
 
   onload(): void {
     this.apiService.getAccounts().subscribe(response => {
-      this.fullData = response.map((item: any, index: number) => {
+      this.fullDataOrigin = response.map((item: any, index: number) => {
         return {
           index: index + 1,
           ...item
         };
       });
 
-      let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
-      this.fullData = [
-        ...this.fullData,
+      let elToAdd = this.fullDataOrigin.length % this.amount ? this.amount - (this.fullDataOrigin.length % this.amount) : 0;
+      this.fullDataOrigin = [
+        ...this.fullDataOrigin,
         ...Array.from({ length: elToAdd }, () => ({}))
       ]
       this.condition = true;
+      this.fullData = this.fullDataOrigin;
       this.refresh(1);
     }, () => {
-      this.fullData = Array.from({ length: this.amount }, () => ({}));
+      this.fullDataOrigin = Array.from({ length: this.amount }, () => ({}));
+      this.fullData = this.fullDataOrigin;
       this.refresh(1);
     });
   }
@@ -72,5 +79,21 @@ export class AccountsComponent {
     this.apiService.deleteAccount(id).subscribe(response => {
       this.onload();
     });
+  }
+
+  onInputChange(): void {
+    this.fullData = this.fullDataOrigin.filter(
+      (item: { username: string; email: string; }) =>
+        (item.username && item.username.includes(this.inputUsername)) &&
+        (item.email && item.email.includes(this.inputEmail))
+    );
+
+    let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
+    this.fullData = [
+      ...this.fullData,
+      ...Array.from({ length: elToAdd }, () => ({}))
+    ]
+    this.condition = true;
+    this.refresh(1);
   }
 }

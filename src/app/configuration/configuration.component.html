@@ -7,7 +7,7 @@
           <button class="button" style="padding: 10px; opacity: 0;">
             <i class="fa-solid fa-arrow-left color-gray-1" style="font-size: 24px;"></i>
           </button>
-          <div class="heading-3">Account table</div>
+          <div class="heading-3">Configuration table</div>
           <button class="button" style="padding: 10px;" (click)="create()">
             <i class="fa-solid fa-plus color-gray-1" style="font-size: 24px;"></i>
           </button>
@@ -17,16 +17,16 @@
         <thead>
           <tr>
             <th class="body-3 long-text-100">STT</th>
-            <th class="long-text-300">
+            <th class="long-text-200">
               <div class="sub-header" style="margin: 10px;" *ngIf="!search1">
                 <button class="button" style="padding: 10px; opacity: 0;"></button>
-                <div class="body-3 header">Username</div>
+                <div class="body-3 header">Website name</div>
                 <button class="button" style="padding: 10px;" (click)="search1 = true">
                   <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
                 </button>
               </div>
               <div class="relative sub-header" style="margin: 10px;" *ngIf="search1">
-                <input class="input-search w-100" type="text" [(ngModel)]="inputUsername"
+                <input class="input-search w-100" type="text" [(ngModel)]="inputWebsitename"
                   (ngModelChange)="onInputChange()">
                 <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
                   (click)="search1 = false">
@@ -34,16 +34,16 @@
                 </button>
               </div>
             </th>
-            <th class="body-3 long-text-300">
+            <th class="body-3 long-text-500">
               <div class="sub-header" style="margin: 10px;" *ngIf="!search2">
                 <button class="button" style="padding: 10px; opacity: 0;"></button>
-                <div class="body-3 header">Email</div>
+                <div class="body-3 header">Website url</div>
                 <button class="button" style="padding: 10px;" (click)="search2 = true">
                   <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
                 </button>
               </div>
               <div class="relative sub-header" style="margin: 10px;" *ngIf="search2">
-                <input class="input-search w-100" type="text" [(ngModel)]="inputEmail"
+                <input class="input-search w-100" type="text" [(ngModel)]="inputWebsiteurl"
                   (ngModelChange)="onInputChange()">
                 <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
                   (click)="search2 = false">
@@ -51,29 +51,25 @@
                 </button>
               </div>
             </th>
-            <th class="body-3 long-text-100">Role</th>
             <th colspan="2"></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of accounts" style="height: 62.5px;">
+          <tr *ngFor="let item of pages" style="height: 62.5px;">
             <td>
-              <div class="body-3 ta-center">{{item.email ? item.index : ''}}</div>
+              <div class="body-3 ta-center">{{item.website_url ? item.index : ''}}</div>
             </td>
             <td>
-              <div class="body-5 ta-center">{{item.username}}</div>
+              <div class="body-5 ta-center">{{item.website_name}}</div>
             </td>
             <td>
-              <div class="body-5 ta-center">{{item.email}}</div>
-            </td>
-            <td>
-              <div class="body-5 ta-center">{{item.user_role}}</div>
+              <div class="body-5 ta-center">{{item.website_url}}</div>
             </td>
             <td class="ta-center long-text-100">
-              <button class="button button-hover button-1 color-gray-1 edit-button" style="padding: 8px 24px;" (click)="edit(item.id)" *ngIf="item.email">Edit</button>
+              <button class="button button-hover button-1 color-gray-1 pri-button" style="padding: 8px 24px;" (click)="navi(item.id)" *ngIf="item.website_url">Show</button>
             </td>
             <td class="ta-center long-text-100">
-              <button class="button button-hover button-1 color-gray-1 delete-button" style="padding: 8px 24px;" (click)="delete(item.id)" *ngIf="item.email && item.user_role.toLowerCase() !== 'admin'">Delete</button>
+              <button class="button button-hover button-1 color-gray-1 edit-button" style="padding: 8px 24px;" (click)="config(item.id)" *ngIf="item.website_url">Edit</button>
             </td>
           </tr>
         </tbody>
