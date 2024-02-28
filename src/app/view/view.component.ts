@@ -20,7 +20,7 @@ export class ViewComponent {
   loading: boolean = true;
 
   inputTitle: string = '';
-  inputSeller: string = '';
+  inputSquare: string = '';
   inputPrice: string = '';
 
   search1: boolean = false;
@@ -76,9 +76,9 @@ export class ViewComponent {
 
   onInputChange(): void {
     this.fullData = this.fullDataOrigin.filter(
-      (item: { title: string; seller_user: string; price: string; }) =>
+      (item: { title: string; square: string; price: string; }) =>
         (item.title && item.title.includes(this.inputTitle)) &&
-        (item.seller_user && item.seller_user.includes(this.inputSeller)) &&
+        (item.square && item.square.includes(this.inputSquare)) &&
         (item.price && item.price.includes(this.inputPrice))
     );
 

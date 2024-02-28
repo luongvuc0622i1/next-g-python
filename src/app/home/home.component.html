@@ -57,7 +57,7 @@
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
-              </th>
+              <!-- </th>
               <th class="body-3 long-text-100">
                 <div class="sub-header" style="margin: 10px;" *ngIf="!search3">
                   <button class="button" style="padding: 10px; opacity: 0;"></button>
@@ -74,8 +74,25 @@
                     <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
                   </button>
                 </div>
-              </th>
+              </th> -->
               <th class="body-3 long-text-300">Detail</th>
+              <th class="body-3 long-text-100">
+                <div class="sub-header" style="margin: 10px;" *ngIf="!search3">
+                  <button class="button" style="padding: 10px; opacity: 0;"></button>
+                  <div class="body-3 header">Area</div>
+                  <button class="button" style="padding: 10px;" (click)="search3 = true">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
+                  </button>
+                </div>
+                <div class="relative sub-header" style="margin: 10px;" *ngIf="search3">
+                  <input class="input-search w-100" type="text" [(ngModel)]="inputSquare"
+                    (ngModelChange)="onInputChange()">
+                  <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
+                    (click)="search3 = false; inputSquare = ''; onInputChange()">
+                    <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
+                  </button>
+                </div>
+              </th>
               <th class="body-3 long-text-100">
                 <div class="sub-header" style="margin: 10px;" *ngIf="!search4">
                   <button class="button" style="padding: 10px; opacity: 0;"></button>
@@ -99,21 +116,24 @@
           <tbody>
             <tr *ngFor="let item of views" style="height: 125px;">
               <td>
-                <div class="body-3" style="cursor: pointer;" (click)="navi(item.websiteId)">
+                <div class="body-3 ta-center" style="cursor: pointer;" (click)="navi(item.websiteId)">
                   {{item.websiteName}}</div>
               </td>
               <td>
                 <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.title}}</div>
               </td>
-              <td>
+              <!-- <td>
                 <div
                   style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px;">
                   <div class="body-5">{{item.websiteDescription.seller_user}}</div>
                   <div class="body-5">{{item.websiteDescription.seller_phone}}</div>
                 </div>
-              </td>
+              </td> -->
               <td>
                 <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.detail}}</div>
+              </td>
+              <td>
+                <div class="body-5 ta-center">{{item.websiteDescription.square}}</div>
               </td>
               <td>
                 <div class="body-5 ta-center">{{item.websiteDescription.price}}</div>
