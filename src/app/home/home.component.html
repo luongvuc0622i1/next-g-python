@@ -1,63 +1,66 @@
 <!-- <app-navigation></app-navigation>
 <div class="container">
   <div class="sub-container"> -->
-    <div class="parent" *ngIf="loading">
+<div class="container" *ngIf="loading">
+  <div class="sub-container">
+    <div class="parent">
       <div class="loader child">
         <div class="bar bar1"></div>
         <div class="bar bar2"></div>
         <div class="bar bar3"></div>
       </div>
     </div>
-    <div *ngIf="!loading">
-      <div class="table">
-        <div class="header" style="height: 65px;">
-          <div class="sub-header" style="margin: 10px;">
-            <button class="button" style="padding: 10px; opacity: 0;">
-              <i class="fa-solid fa-arrow-left color-gray-1" style="font-size: 24px;"></i>
-            </button>
-            <div class="heading-3">Consolidated table</div>
-            <button class="button" style="padding: 10px;" (click)="onload()">
-              <i class="fa-solid fa-rotate color-gray-1" style="font-size: 24px;"></i>
-            </button>
-          </div>
-        </div>
-        <table class="styled-table">
-          <thead>
-            <tr>
-              <th class="long-text-200">
-                <div class="sub-header" style="margin: 10px;" *ngIf="!search1">
-                  <button class="button" style="padding: 10px; opacity: 0;"></button>
-                  <div class="body-3 header">Website</div>
-                  <button class="button" style="padding: 10px;" (click)="search1 = true">
-                    <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-                <div class="relative sub-header" style="margin: 10px;" *ngIf="search1">
-                  <input class="input-search w-100" type="text" [(ngModel)]="inputWebsite"
-                    (ngModelChange)="onInputChange()">
-                  <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search1 = false; inputWebsite = ''; onInputChange()">
-                    <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-              </th>
-              <th class="body-3 long-text-200">
-                <div class="sub-header" style="margin: 10px;" *ngIf="!search2">
-                  <button class="button" style="padding: 10px; opacity: 0;"></button>
-                  <div class="body-3 header">Title</div>
-                  <button class="button" style="padding: 10px;" (click)="search2 = true">
-                    <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-                <div class="relative sub-header" style="margin: 10px;" *ngIf="search2">
-                  <input class="input-search w-100" type="text" [(ngModel)]="inputTitle"
-                    (ngModelChange)="onInputChange()">
-                  <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search2 = false; inputTitle = ''; onInputChange()">
-                    <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-              <!-- </th>
+  </div>
+</div>
+<div *ngIf="!loading">
+  <div class="table">
+    <div class="header" style="height: 65px;">
+      <div class="sub-header" style="margin: 10px;">
+        <button class="button" style="padding: 10px; opacity: 0;">
+          <i class="fa-solid fa-arrow-left color-gray-1" style="font-size: 24px;"></i>
+        </button>
+        <div class="heading-3">Consolidated table</div>
+        <button class="button" style="padding: 10px;" (click)="onload()">
+          <i class="fa-solid fa-rotate color-gray-1" style="font-size: 24px;"></i>
+        </button>
+      </div>
+    </div>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th class="long-text-200">
+            <div class="sub-header" style="margin: 10px;" *ngIf="!search1">
+              <button class="button" style="padding: 10px; opacity: 0;"></button>
+              <div class="body-3 header">Website</div>
+              <button class="button" style="padding: 10px;" (click)="search1 = true">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
+              </button>
+            </div>
+            <div class="relative sub-header" style="margin: 10px;" *ngIf="search1">
+              <input class="input-search w-100" type="text" [(ngModel)]="inputWebsite"
+                (ngModelChange)="onInputChange()">
+              <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
+                (click)="search1 = false; inputWebsite = ''; onInputChange()">
+                <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
+              </button>
+            </div>
+          </th>
+          <th class="body-3 long-text-200">
+            <div class="sub-header" style="margin: 10px;" *ngIf="!search2">
+              <button class="button" style="padding: 10px; opacity: 0;"></button>
+              <div class="body-3 header">Title</div>
+              <button class="button" style="padding: 10px;" (click)="search2 = true">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
+              </button>
+            </div>
+            <div class="relative sub-header" style="margin: 10px;" *ngIf="search2">
+              <input class="input-search w-100" type="text" [(ngModel)]="inputTitle" (ngModelChange)="onInputChange()">
+              <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
+                (click)="search2 = false; inputTitle = ''; onInputChange()">
+                <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
+              </button>
+            </div>
+            <!-- </th>
               <th class="body-3 long-text-100">
                 <div class="sub-header" style="margin: 10px;" *ngIf="!search3">
                   <button class="button" style="padding: 10px; opacity: 0;"></button>
@@ -75,82 +78,81 @@
                   </button>
                 </div>
               </th> -->
-              <th class="body-3 long-text-300">Detail</th>
-              <th class="body-3 long-text-100">
-                <div class="sub-header" style="margin: 10px;" *ngIf="!search3">
-                  <button class="button" style="padding: 10px; opacity: 0;"></button>
-                  <div class="body-3 header">Area</div>
-                  <button class="button" style="padding: 10px;" (click)="search3 = true">
-                    <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-                <div class="relative sub-header" style="margin: 10px;" *ngIf="search3">
-                  <input class="input-search w-100" type="text" [(ngModel)]="inputSquare"
-                    (ngModelChange)="onInputChange()">
-                  <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search3 = false; inputSquare = ''; onInputChange()">
-                    <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-              </th>
-              <th class="body-3 long-text-100">
-                <div class="sub-header" style="margin: 10px;" *ngIf="!search4">
-                  <button class="button" style="padding: 10px; opacity: 0;"></button>
-                  <div class="body-3 header">Price</div>
-                  <button class="button" style="padding: 10px;" (click)="search4 = true">
-                    <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-                <div class="relative sub-header" style="margin: 10px;" *ngIf="search4">
-                  <input class="input-search w-100" type="text" [(ngModel)]="inputPrice"
-                    (ngModelChange)="onInputChange()">
-                  <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
-                    (click)="search4 = false; inputPrice = ''; onInputChange()">
-                    <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
-                  </button>
-                </div>
-              </th>
-              <th class="long-text-100"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of views" style="height: 125px;">
-              <td>
-                <div class="body-3 ta-center" style="cursor: pointer;" (click)="navi(item.websiteId)">
-                  {{item.websiteName}}</div>
-              </td>
-              <td>
-                <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.title}}</div>
-              </td>
-              <!-- <td>
+          <th class="body-3 long-text-300">Detail</th>
+          <th class="body-3 long-text-100">
+            <div class="sub-header" style="margin: 10px;" *ngIf="!search3">
+              <button class="button" style="padding: 10px; opacity: 0;"></button>
+              <div class="body-3 header">Area</div>
+              <button class="button" style="padding: 10px;" (click)="search3 = true">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
+              </button>
+            </div>
+            <div class="relative sub-header" style="margin: 10px;" *ngIf="search3">
+              <input class="input-search w-100" type="text" [(ngModel)]="inputSquare" (ngModelChange)="onInputChange()">
+              <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
+                (click)="search3 = false; inputSquare = ''; onInputChange()">
+                <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
+              </button>
+            </div>
+          </th>
+          <th class="body-3 long-text-100">
+            <div class="sub-header" style="margin: 10px;" *ngIf="!search4">
+              <button class="button" style="padding: 10px; opacity: 0;"></button>
+              <div class="body-3 header">Price</div>
+              <button class="button" style="padding: 10px;" (click)="search4 = true">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 17px;"></i>
+              </button>
+            </div>
+            <div class="relative sub-header" style="margin: 10px;" *ngIf="search4">
+              <input class="input-search w-100" type="text" [(ngModel)]="inputPrice" (ngModelChange)="onInputChange()">
+              <button class="button" style="padding: 10px; position: absolute; right: 0; background: none;"
+                (click)="search4 = false; inputPrice = ''; onInputChange()">
+                <i class="fa-solid fa-xmark" style="font-size: 17px;"></i>
+              </button>
+            </div>
+          </th>
+          <th class="long-text-100"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of views" style="height: 125px;">
+          <td>
+            <div class="body-3 ta-center" style="cursor: pointer;" (click)="navi(item.websiteId)">
+              {{item.websiteName}}</div>
+          </td>
+          <td>
+            <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.title}}</div>
+          </td>
+          <!-- <td>
                 <div
                   style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px;">
                   <div class="body-5">{{item.websiteDescription.seller_user}}</div>
                   <div class="body-5">{{item.websiteDescription.seller_phone}}</div>
                 </div>
               </td> -->
-              <td>
-                <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.detail}}</div>
-              </td>
-              <td>
-                <div class="body-5 ta-center">{{item.websiteDescription.square}}</div>
-              </td>
-              <td>
-                <div class="body-5 ta-center">{{item.websiteDescription.price}}</div>
-              </td>
-              <td class="ta-center">
-                <a href={{item.websiteDescription.url}} target="_blank">
-                  <button class="button button-hover button-1 color-gray-1" style="padding: 8px 24px;" *ngIf="item.websiteName">Link</button>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="footer" style="height: 65px;">
-          <app-pagination *ngIf="condition" [fullData]="fullData" [amount]="amount"
-            (refresh)="refresh($event)"></app-pagination>
-        </div>
-      </div>
+          <td>
+            <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.detail}}</div>
+          </td>
+          <td>
+            <div class="body-5 ta-center">{{item.websiteDescription.square}}</div>
+          </td>
+          <td>
+            <div class="body-5 ta-center">{{item.websiteDescription.price}}</div>
+          </td>
+          <td class="ta-center">
+            <a href={{item.websiteDescription.url}} target="_blank">
+              <button class="button button-hover button-1 color-gray-1" style="padding: 8px 24px;"
+                *ngIf="item.websiteName">Link</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="footer" style="height: 65px;">
+      <app-pagination *ngIf="condition" [fullData]="fullData" [amount]="amount"
+        (refresh)="refresh($event)"></app-pagination>
     </div>
-  <!-- </div>
+  </div>
+</div>
+<!-- </div>
 </div> -->

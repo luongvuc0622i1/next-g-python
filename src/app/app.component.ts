@@ -55,7 +55,8 @@ export class AppComponent {
     } else {
       // Nếu chiều cao màn hình < 1000, bảng sẽ cách lề trên 100px
       return {
-        'padding-top': '100px'
+        'padding-top': '100px',
+        'padding-bottom': '20px'
       };
     }
   }
