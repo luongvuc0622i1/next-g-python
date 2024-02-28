@@ -26,10 +26,6 @@ export class AppComponent {
   }
 
   closeModal(): void {
-    // this.showModal = false;
-    // this.showModalConfig = false;
-    // this.showModalSignin = false;
-    // this.showModalSignup = false;
     this.transferService.setShowModal(false);
     this.transferService.setShowModalConfig(false);
     this.transferService.setShowModalSignin(false);
@@ -43,11 +39,24 @@ export class AppComponent {
       this.transferService.setShowModalConfig(false);
       this.transferService.setShowModalSignin(false);
       this.transferService.setShowModalSignup(false);
-      // this.showModal = false;
-      // this.showModalConfig = false;
-      // this.showModalSignin = false;
-      // this.showModalSignup = false;
       this.showModalNewPassword = false;
+    }
+  }
+
+  getTableStyle() {
+    // Kiểm tra chiều cao màn hình
+    const height = window.innerHeight;
+    
+    // Nếu chiều cao màn hình >= 1000, bảng sẽ hiển thị giữa khung hình
+    if (height >= 1000) {
+      return {
+        'padding-top': 'calc(50vh - 50%)' // Để hiển thị giữa khung hình
+      };
+    } else {
+      // Nếu chiều cao màn hình < 1000, bảng sẽ cách lề trên 100px
+      return {
+        'padding-top': '100px'
+      };
     }
   }
 }

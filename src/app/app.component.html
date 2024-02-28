@@ -1,4 +1,7 @@
-<router-outlet></router-outlet>
+<app-navigation></app-navigation>
+<div style="padding: 0 150px;" [ngStyle]="getTableStyle()">
+  <router-outlet></router-outlet>
+</div>
 
 <div class="modal" *ngIf="showModal" (click)="handleClose($event)">
   <div class="modal-content">
