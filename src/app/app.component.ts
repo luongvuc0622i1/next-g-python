@@ -42,22 +42,4 @@ export class AppComponent {
       this.showModalNewPassword = false;
     }
   }
-
-  getTableStyle() {
-    // Kiểm tra chiều cao màn hình
-    const height = window.innerHeight;
-    
-    // Nếu chiều cao màn hình >= 1000, bảng sẽ hiển thị giữa khung hình
-    if (height >= 1000) {
-      return {
-        'padding-top': 'calc(50vh - 50%)' // Để hiển thị giữa khung hình
-      };
-    } else {
-      // Nếu chiều cao màn hình < 1000, bảng sẽ cách lề trên 100px
-      return {
-        'padding-top': '100px',
-        'padding-bottom': '20px'
-      };
-    }
-  }
 }

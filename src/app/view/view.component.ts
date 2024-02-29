@@ -19,13 +19,7 @@ export class ViewComponent {
 
   loading: boolean = true;
 
-  inputTitle: string = '';
-  inputSquare: string = '';
-  inputPrice: string = '';
-
-  search1: boolean = false;
-  search2: boolean = false;
-  search3: boolean = false;
+  input: string = '';
 
   constructor(private apiService: ApiService,
     private route: ActivatedRoute) { }
@@ -74,24 +68,47 @@ export class ViewComponent {
     this.views = this.fullData.slice(start, end);
   }
 
-  onInputChange(): void {
-    this.fullData = this.fullDataOrigin.filter(
-      (item: { title: string; square: string; price: string; }) =>
-        (item.title && item.title.includes(this.inputTitle)) &&
-        (item.square && item.square.includes(this.inputSquare)) &&
-        (item.price && item.price.includes(this.inputPrice))
-    );
+  back() {
+    window.history.back();
+  }
 
-    let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
+  onInputChange(): void {
+    this.fullData = this.fullDataOrigin.filter((item: { title: string | string[]; detail: string | string[]; square: string | string[]; price: string | string[]; }) => {
+      if (item.title && item.detail && item.square && item.price) {
+        return (
+          item.title.includes(this.input) ||
+          item.detail.includes(this.input) ||
+          item.square.includes(this.input) ||
+          item.price.includes(this.input)
+        );
+      }
+      return false; // Nếu không thỏa mãn điều kiện, loại bỏ phần tử
+    });
+
+    let elToAdd = this.fullData.length ? (this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0) : this.amount;
     this.fullData = [
       ...this.fullData,
       ...Array.from({ length: elToAdd }, () => ({}))
     ]
-    this.condition = true;
+    this.condition = this.fullData.length ? true : false;
     this.refresh(1);
   }
 
-  back() {
-    window.history.back();
+  getTableStyle() {
+    // Kiểm tra chiều cao màn hình
+    const height = window.innerHeight;
+    
+    // Nếu chiều cao màn hình >= 895, bảng sẽ hiển thị giữa khung hình
+    if (height >= 895) {
+      return {
+        'padding-top': (height - 895)/2 + 80 + 'px' // Để hiển thị giữa khung hình
+      };
+    } else {
+      // Nếu chiều cao màn hình < 1000, bảng sẽ cách lề trên 100px
+      return {
+        'padding-top': '100px',
+        'padding-bottom': '20px'
+      };
+    }
   }
 }

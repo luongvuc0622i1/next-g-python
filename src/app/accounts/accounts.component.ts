@@ -15,12 +15,6 @@ export class AccountsComponent {
   fullData: any;
   condition: boolean = false;
 
-  inputUsername: string = '';
-  inputEmail: string = '';
-
-  search1: boolean = false;
-  search2: boolean = false;
-
   private subscription?: Subscription;
 
   constructor(private apiService: ApiService,
@@ -81,19 +75,21 @@ export class AccountsComponent {
     });
   }
 
-  onInputChange(): void {
-    this.fullData = this.fullDataOrigin.filter(
-      (item: { username: string; email: string; }) =>
-        (item.username && item.username.includes(this.inputUsername)) &&
-        (item.email && item.email.includes(this.inputEmail))
-    );
-
-    let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
-    this.fullData = [
-      ...this.fullData,
-      ...Array.from({ length: elToAdd }, () => ({}))
-    ]
-    this.condition = true;
-    this.refresh(1);
+  getTableStyle() {
+    // Kiểm tra chiều cao màn hình
+    const height = window.innerHeight;
+    
+    // Nếu chiều cao màn hình >= 895, bảng sẽ hiển thị giữa khung hình
+    if (height >= 895) {
+      return {
+        'padding-top': (height - 895)/2 + 80 + 'px' // Để hiển thị giữa khung hình
+      };
+    } else {
+      // Nếu chiều cao màn hình < 1000, bảng sẽ cách lề trên 100px
+      return {
+        'padding-top': '100px',
+        'padding-bottom': '20px'
+      };
+    }
   }
 }

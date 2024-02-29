@@ -15,12 +15,6 @@ export class ConfigurationComponent {
   fullDataOrigin: any;
   fullData: any;
   condition: boolean = false;
-  
-  inputWebsitename: string = '';
-  inputWebsiteurl: string = '';
-
-  search1: boolean = false;
-  search2: boolean = false;
 
   private subscription?: Subscription;
 
@@ -81,19 +75,21 @@ export class ConfigurationComponent {
     this.transferService.setShowModal(true);
   }
 
-  onInputChange(): void {
-    this.fullData = this.fullDataOrigin.filter(
-      (item: { website_name: string; website_url: string; }) =>
-        (item.website_name && item.website_name.includes(this.inputWebsitename)) &&
-        (item.website_url && item.website_url.includes(this.inputWebsiteurl))
-    );
-
-    let elToAdd = this.fullData.length % this.amount ? this.amount - (this.fullData.length % this.amount) : 0;
-    this.fullData = [
-      ...this.fullData,
-      ...Array.from({ length: elToAdd }, () => ({}))
-    ]
-    this.condition = true;
-    this.refresh(1);
+  getTableStyle() {
+    // Kiểm tra chiều cao màn hình
+    const height = window.innerHeight;
+    
+    // Nếu chiều cao màn hình >= 895, bảng sẽ hiển thị giữa khung hình
+    if (height >= 895) {
+      return {
+        'padding-top': (height - 895)/2 + 80 + 'px' // Để hiển thị giữa khung hình
+      };
+    } else {
+      // Nếu chiều cao màn hình < 1000, bảng sẽ cách lề trên 100px
+      return {
+        'padding-top': '100px',
+        'padding-bottom': '20px'
+      };
+    }
   }
 }

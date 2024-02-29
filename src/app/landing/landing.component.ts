@@ -81,7 +81,9 @@ export class LandingComponent {
     this.authService.loginEmail(this.formSignin.value).subscribe(data => {
       this.authService.signInSuccess(data);
       this.closeModal.emit();
-    }, error => { })
+    }, error => {
+      this.statusEmail = 'Invalid username or password.';
+    })
   }
 
   formatEmail() {

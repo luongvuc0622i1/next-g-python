@@ -47,8 +47,7 @@ button {
 
 .container {
     position: relative;
-    height: 100vh;
-    /* Chiều cao 100% của viewport */
+    height: 100%;
 }
 
 .relative {
@@ -251,7 +250,7 @@ button {
 }
 
 .input-search {
-    padding: 10.5px 33px 10.5px 10.5px;
+    padding: 10.5px;
     border-radius: 8px;
 }
 
