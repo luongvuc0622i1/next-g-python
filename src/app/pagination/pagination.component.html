@@ -4,7 +4,7 @@
   <div *ngIf="curPage == 1" style="width: 67px;"></div>
 
   <button class="pag" *ngFor="let num of pageNumbers"
-    [ngStyle]="{ 'color': num == curPage ? 'red' : '', 'font-weight': num == curPage ? '600' : '' }"
+    [ngStyle]="{ 'color': num == curPage ? 'var(--secondary-color)' : '', 'font-weight': num == curPage ? '600' : '', 'background-color': 'var(--secondary-active-color)' }"
     (click)="choosePage(num)">{{num}}</button>
 
   <button *ngIf="curPage != numOfPages" class="pag" (click)="nextPage()">›</button>

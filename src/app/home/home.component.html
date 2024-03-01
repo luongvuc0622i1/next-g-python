@@ -1,14 +1,10 @@
 <app-navigation></app-navigation>
 <div style="padding: 0 150px;" [ngStyle]="getTableStyle()">
-  <div class="container" *ngIf="loading">
-    <div class="sub-container">
-      <div class="parent">
-        <div class="loader child">
-          <div class="bar bar1"></div>
-          <div class="bar bar2"></div>
-          <div class="bar bar3"></div>
-        </div>
-      </div>
+  <div class="parent" *ngIf="loading">
+    <div class="loader child">
+      <div class="bar bar1"></div>
+      <div class="bar bar2"></div>
+      <div class="bar bar3"></div>
     </div>
   </div>
   <div *ngIf="!loading">
@@ -38,8 +34,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of views" style="height: 125px;">
-            <td >
-              <div class="body-5 ta-center">{{item.websiteDescription.title ? '29-02-2024' : ''}}</div>
+            <td>
+              <div class="body-5 ta-center">{{item.websiteDescription.date ? item.websiteDescription.date.slice(0, 10) : ''}}</div>
             </td>
             <td>
               <a href={{item.websiteDescription.url}} target="_blank">

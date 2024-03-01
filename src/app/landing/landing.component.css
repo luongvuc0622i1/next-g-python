@@ -6,7 +6,7 @@
     flex-shrink: 0;
     position: unset;
     transform: none;
-    margin: 150px 30%;
+    padding: 150px 30% 0;
 }
 
 .login-container .container {

@@ -45,10 +45,10 @@ button {
     cursor: pointer;
 }
 
-.container {
+/* .container {
     position: relative;
     height: 100%;
-}
+} */
 
 .relative {
     position: relative;
@@ -113,7 +113,7 @@ button {
 
 .parent {
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 120px);
     position: relative;
 }
 
@@ -124,13 +124,13 @@ button {
     transform: translate(-50%, -50%);
 }
 
-.sub-container {
+/* .sub-container {
     position: absolute;
     width: -webkit-fill-available;
     top: calc(50% + 40px);
     transform: translateY(-50%);
-    margin: 0 150px;
-}
+    margin: 150px;
+} */
 
 .table {
     border-radius: 10px;
@@ -299,6 +299,7 @@ a:focus {
 }
 
 .pag:focus {
+    font-weight: 600;
     color: var(--secondary-color);
     background-color: var(--secondary-active-color);
 }
