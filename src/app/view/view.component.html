@@ -35,14 +35,14 @@
         <tbody>
           <tr *ngFor="let item of views; let i = index" style="height: 125px;">
             <td>
-              <div class="body-3 ta-center">{{item.title ? ((currentPage - 1) * amount + i + 1) : ''}}</div>
+              <div class="body-3 ta-center">{{item.date ? ((currentPage - 1) * amount + i + 1) : ''}}</div>
             </td>
             <td>
               <div class="body-5 ta-center">{{item.date ? item.date.slice(0, 10) : ''}}</div>
             </td>
             <td>
               <a href={{item.url}} target="_blank">
-                <div class="body-3" style="height: 105px; overflow-y: auto;">{{item.title}}</div>
+                <div class="body-3" style="height: 105px; overflow-y: auto;">{{item.title ? item.title : item.url}}</div>
               </a>
             </td>
             <td>
