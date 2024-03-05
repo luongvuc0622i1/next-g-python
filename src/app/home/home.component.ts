@@ -49,8 +49,8 @@ export class HomeComponent {
         });
       }).sort((a, b) => {
         // Chuyển đổi chuỗi ngày thành đối tượng Date để so sánh
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
+        const dateA = new Date(a.websiteDescription.date);
+        const dateB = new Date(b.websiteDescription.date);
     
         // Sắp xếp theo thứ tự tăng dần
         return dateB.getTime() - dateA.getTime();
