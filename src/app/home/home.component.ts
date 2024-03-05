@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent {
   input: string = '';
 
   constructor(private router: Router,
-    private apiService: ApiService) { }
+    private apiService: ApiService,
+    private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.onload();
@@ -28,7 +30,15 @@ export class HomeComponent {
   onload(): void {
     this.loading = true;
     this.fullDataOrigin = [];
-    this.apiService.getAll().subscribe(response => {
+    let role = this.tokenService.getUserRole();
+    let apiCall;
+
+    if (role === 'Admin') {
+      apiCall = this.apiService.getAll();
+    } else {
+      apiCall = this.apiService.getAllByUser();
+    }
+    apiCall.subscribe(response => {
       this.fullDataOrigin = response.flatMap(item => {
         return item.websiteDescription.map((description: any) => {
           return {

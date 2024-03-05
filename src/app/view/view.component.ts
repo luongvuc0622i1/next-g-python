@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { TokenService } from '../service/token.service';
 
 @Component({
   selector: 'app-view',
@@ -13,6 +14,7 @@ export class ViewComponent {
   fullData: any;
   amount: number = 5;
   condition: boolean = false;
+  currentPage: number = 1;
 
   namePage: any;
   id: number = 0;
@@ -22,7 +24,8 @@ export class ViewComponent {
   input: string = '';
 
   constructor(private apiService: ApiService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -34,7 +37,15 @@ export class ViewComponent {
   onload(): void {
     this.loading = true;
     this.fullDataOrigin = [];
-    this.apiService.getView(this.id).subscribe(response => {
+    let role = this.tokenService.getUserRole();
+    let apiCall;
+
+    if (role === 'Admin') {
+      apiCall = this.apiService.getView(this.id);
+    } else {
+      apiCall = this.apiService.getViewByUser(this.id);
+    }
+    apiCall.subscribe(response => {
       this.fullDataOrigin = response.map((item: any, index: number) => {
         return {
           index: index + 1,
@@ -66,6 +77,9 @@ export class ViewComponent {
     let start = (curPage - 1) * this.amount;
     let end = start + this.amount;
     this.views = this.fullData.slice(start, end);
+
+    // Riêng
+    this.currentPage = curPage;
   }
 
   back() {

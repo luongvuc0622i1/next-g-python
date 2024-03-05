@@ -11,6 +11,14 @@ const API_URL = environment.apiUrl;
 export class ApiService {
   constructor(private http: HttpClient) { }
 
+  getAllByUser(): Observable<any[]> {
+    return this.http.get<any[]>(`${API_URL}/list-website-description`);
+  }
+
+  getViewByUser(id: number): Observable<any[]> {
+    return this.http.get<any>(`${API_URL}/website-description/${id}`);
+  }
+
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}/all`);
   }

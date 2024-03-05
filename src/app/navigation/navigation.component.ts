@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TransferService } from '../service/transfer.service';
 import { AuthService } from '../service/auth.service';
 import { TokenService } from '../service/token.service';
 
@@ -21,12 +20,6 @@ export class NavigationComponent {
     private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    // this.apiService.findById().subscribe(data => {
-    //   this.username = data.firstName + ' ' + data.lastName;
-    //   if (data.imageUrl) this.img = data.imageUrl;
-    //   else this.img = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThRSug_V2Rrhkaz0SHavzG-uqzh8M8fms_IzQH3rz5gMy9tyXZ";
-    //   this.isTokenValid = true;
-    // }, () => { this.isTokenValid = false });
     this.isTokenValid = this.tokenService.getTokenValid();
     if (this.isTokenValid) {
       this.username = this.tokenService.getUsername().toUpperCase();
@@ -34,12 +27,6 @@ export class NavigationComponent {
       let image = this.tokenService.getUserImage();
       this.img = image !== 'null' ? image : "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThRSug_V2Rrhkaz0SHavzG-uqzh8M8fms_IzQH3rz5gMy9tyXZ";
     }
-    // this.transferService.sharedData$.subscribe((data) => {
-    //   this.isTokenValid = data.isTokenValid;
-    //   this.username = data.username;
-    //   this.role = data.user_role;
-    //   this.img = data.user_image ? data.user_image : "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThRSug_V2Rrhkaz0SHavzG-uqzh8M8fms_IzQH3rz5gMy9tyXZ";
-    // });
   }
 
   ngDoCheck(): void {

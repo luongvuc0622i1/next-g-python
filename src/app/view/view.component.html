@@ -33,9 +33,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of views" style="height: 125px;">
+          <tr *ngFor="let item of views; let i = index" style="height: 125px;">
             <td>
-              <div class="body-3 ta-center">{{item.title ? item.index : ''}}</div>
+              <div class="body-3 ta-center">{{item.title ? ((currentPage - 1) * amount + i + 1) : ''}}</div>
             </td>
             <td>
               <div class="body-5 ta-center">{{item.date ? item.date.slice(0, 10) : ''}}</div>

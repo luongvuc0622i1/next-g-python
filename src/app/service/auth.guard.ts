@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Observable, catchError, map, of } from 'rxjs';
 import { TokenService } from './token.service';
 import { AuthService } from './auth.service';
-import { TransferService } from './transfer.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   constructor(private tokenService: TokenService,
-    private authService: AuthService,
-    private transferService: TransferService,
-    private router: Router) { }
+    private authService: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     // Perform your authentication logic here
