@@ -19,12 +19,14 @@ export class PaginationComponent {
 
   ngOnInit(): void {
     this.numOfPages = Math.ceil(this.fullData.length / this.amount);
-    this.pageNumbers = Array.from({ length: this.numOfPages < this.amountDisplay ? (this.numOfPages - 1) : this.amountDisplay }, (_, index) => index + 2);
+    // this.pageNumbers = Array.from({ length: this.numOfPages < this.amountDisplay ? (this.numOfPages - 1) : this.amountDisplay }, (_, index) => index + 2);
+    this.sub();
   }
 
   ngOnChanges(): void {
     this.numOfPages = Math.ceil(this.fullData.length / this.amount);
-    this.pageNumbers = Array.from({ length: this.numOfPages < this.amountDisplay ? (this.numOfPages - 1) : this.amountDisplay }, (_, index) => index + 2);
+    // this.pageNumbers = Array.from({ length: this.numOfPages < this.amountDisplay ? (this.numOfPages - 1) : this.amountDisplay }, (_, index) => index + 2);
+    this.sub();
   }
 
   sub(): void {
