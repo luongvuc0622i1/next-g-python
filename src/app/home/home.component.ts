@@ -47,7 +47,14 @@ export class HomeComponent {
             websiteId: item.websiteId
           };
         });
-      });
+      }).sort((a, b) => {
+        // Chuyển đổi chuỗi ngày thành đối tượng Date để so sánh
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+    
+        // Sắp xếp theo thứ tự tăng dần
+        return dateB.getTime() - dateA.getTime();
+    });
 
       let elToAdd = this.fullDataOrigin.length % this.amount ? this.amount - (this.fullDataOrigin.length % this.amount) : 0;
       this.fullDataOrigin = [

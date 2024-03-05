@@ -286,7 +286,7 @@ button {
 .pag:hover,
 a:active,
 a:focus {
-    width: 43px;
+    min-width: 43px;
     height: 43px;
     padding: 12px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .5);
