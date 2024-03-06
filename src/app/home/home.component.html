@@ -1,12 +1,12 @@
 <app-navigation></app-navigation>
-<div class="getTableStyle">
-  <div class="parent" *ngIf="loading">
-    <div class="loader child">
-      <div class="bar bar1"></div>
-      <div class="bar bar2"></div>
-      <div class="bar bar3"></div>
-    </div>
+<div class="parent" *ngIf="loading">
+  <div class="loader child">
+    <div class="bar bar1"></div>
+    <div class="bar bar2"></div>
+    <div class="bar bar3"></div>
   </div>
+</div>
+<div class="getTableStyle">
   <div *ngIf="!loading">
     <div class="table">
       <div class="header" style="height: 65px;">
@@ -35,21 +35,22 @@
         <tbody>
           <tr *ngFor="let item of views" style="height: 125px;">
             <td>
-              <div class="body-5 ta-center">{{item.websiteDescription.date ? item.websiteDescription.date.slice(0, 10) : ''}}</div>
+              <div class="body-5 ta-center">{{item.websiteDescription ? item.websiteDescription.date.slice(0, 10) : ''}}
+              </div>
             </td>
             <td>
-              <a href={{item.websiteDescription.url}} target="_blank">
-                <div class="body-3" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.title}}</div>
+              <a href="{{item.websiteDescription ? item.websiteDescription.url : ''}}" target="_blank">
+                <div class="body-3" style="height: 105px; overflow-y: auto;">{{item.websiteDescription ? item.websiteDescription.title : ''}}</div>
               </a>
             </td>
             <td>
-              <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription.detail}}</div>
+              <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.websiteDescription ? item.websiteDescription.detail : ''}}</div>
             </td>
             <td>
-              <div class="body-5 ta-center">{{item.websiteDescription.square}}</div>
+              <div class="body-5 ta-center">{{item.websiteDescription ? item.websiteDescription.square : ''}}</div>
             </td>
             <td>
-              <div class="body-5 ta-center">{{item.websiteDescription.price}}</div>
+              <div class="body-5 ta-center">{{item.websiteDescription ? item.websiteDescription.price: ''}}</div>
             </td>
             <td>
               <div class="body-5 ta-center" style="cursor: pointer;" (click)="navi(item.websiteId)">
