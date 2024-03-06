@@ -109,22 +109,4 @@ export class HomeComponent {
   navi(id: string): void {
     this.router.navigate(['/page', id]);
   }
-
-  getTableStyle() {
-    // Kiểm tra chiều cao màn hình
-    const height = window.innerHeight;
-
-    // Nếu chiều cao màn hình >= 880, bảng sẽ hiển thị giữa khung hình
-    if (height >= 880) {
-      return {
-        'padding-top': (height - 880) / 2 + 80 + 'px' // Để hiển thị giữa khung hình
-      };
-    } else {
-      // Nếu chiều cao màn hình < 1000, bảng sẽ cách lề trên 100px
-      return {
-        'padding-top': '100px',
-        'padding-bottom': '20px'
-      };
-    }
-  }
 }

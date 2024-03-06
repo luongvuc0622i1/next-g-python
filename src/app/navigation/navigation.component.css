@@ -176,6 +176,13 @@
     margin: 20px 0;
 }
 
+@media only screen and (max-width: 1024px) {
+    .header {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
 @media only screen and (max-width: 900px) {
     .header {
         column-gap: 0%;

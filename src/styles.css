@@ -18,7 +18,7 @@ body {
     transition: .2s;
 }
 
-:root {    
+:root {
     --layout-color: #2f2f2f;
 
     --primary-blue-color: #314DD3;
@@ -44,11 +44,6 @@ body {
 button {
     cursor: pointer;
 }
-
-/* .container {
-    position: relative;
-    height: 100%;
-} */
 
 .relative {
     position: relative;
@@ -123,14 +118,6 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-/* .sub-container {
-    position: absolute;
-    width: -webkit-fill-available;
-    top: calc(50% + 40px);
-    transform: translateY(-50%);
-    margin: 150px;
-} */
 
 .table {
     border-radius: 10px;
@@ -390,4 +377,29 @@ a:focus {
 
 .delete-button:hover {
     background-color: var(--error-color);
+}
+
+.getTableStyle {
+    padding-left: 150px;
+    padding-right: 150px;
+    position: absolute;
+    transform: translateY(-50%);
+    top: calc(50% + 40px);
+}
+
+@media only screen and (max-height: 880px) {
+    .getTableStyle {
+        padding-top: 100px;
+        padding-bottom: 20px;
+        position: relative;
+        transform: translateY(0);
+        top: 0;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .getTableStyle {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
