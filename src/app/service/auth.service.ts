@@ -28,7 +28,7 @@ export class AuthService {
       this.tokenService.setUserImage(data.user_image);
       this.tokenService.setUserRole(data.user_role);
       this.transferService.setShowModal(false);
-      this.transferService.setShowModalSignin(false);
+      this.transferService.setShowModalDelete(false);
 
       this.router.navigate(['/home']);
     }

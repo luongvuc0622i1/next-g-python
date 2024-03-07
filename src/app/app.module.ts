@@ -8,7 +8,6 @@ import { ModalConfigComponent } from './modal/modal-config/modal-config.componen
 import { TransferService } from './service/transfer.service';
 import { PaginationComponent } from './pagination/pagination.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { ModalSigninComponent } from './modal/modal-signin/modal-signin.component';
 import { Auth_interceptor } from './service/auth_interceptor';
 import { ModalSignupComponent } from './modal/modal-signup/modal-signup.component';
 import { LandingComponent } from './landing/landing.component';
@@ -18,6 +17,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './view/view.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { ModalDeleteComponent } from './modal/modal-delete/modal-delete.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
     ViewComponent,
     ConfigurationComponent,
     ModalConfigComponent,
-    ModalSigninComponent,
+    ModalDeleteComponent,
     ModalSignupComponent,
     ModalNewPasswordComponent,
     PaginationComponent,

@@ -151,15 +151,9 @@ export class ModalConfigComponent {
   }
 
   delete() {
-    this.apiService.delete(this.formConfiguration.value.id).subscribe(data => {
-      // this.showModalSuccessfully = true;
-      this.onload();
-      this.closeModal.emit();
-      console.log('dung')
-    }, () => {
-      // this.showModalFailed = true;
-      console.log('sai')
-    });
+    this.transferService.setShowModalConfig(false);
+    this.transferService.setShowModalDelete(true);
+    this.transferService.setDeleteFor('config');
   }
 
   back() {

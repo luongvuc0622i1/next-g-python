@@ -70,8 +70,9 @@ export class AccountsComponent {
   }
 
   delete(id: number) {
-    this.apiService.deleteAccount(id).subscribe(response => {
-      this.onload();
-    });
+    this.transferService.setIdSignup(id);
+    this.transferService.setShowModal(true);
+    this.transferService.setShowModalDelete(true);
+    this.transferService.setDeleteFor('account');
   }
 }

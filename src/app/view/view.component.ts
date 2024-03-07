@@ -98,14 +98,14 @@ export class ViewComponent {
       this.fullData = this.fullDataOrigin;
       this.refresh(1);
     } else {
-      this.fullData = this.fullDataOrigin.filter((item: { title: string | string[]; detail: string | string[]; square: string | string[]; price: string | string[]; date: string | any[]; }) => {
+      this.fullData = this.fullDataOrigin.filter((item: { title: string; detail: string; square: string; price: string; date: string | any[]; }) => {
         if (item.title && item.detail && item.square && item.price && item.date) {
           return (
             item.date.slice(0, 10).includes(this.input) ||
-            item.title.includes(this.input) ||
-            item.detail.includes(this.input) ||
-            item.square.includes(this.input) ||
-            item.price.includes(this.input)
+            item.title.toLowerCase().includes(this.input.toLowerCase()) ||
+            item.detail.toLowerCase().includes(this.input.toLowerCase()) ||
+            item.square.toLowerCase().includes(this.input.toLowerCase()) ||
+            item.price.toLowerCase().includes(this.input.toLowerCase())
           );
         }
         return false; // Nếu không thỏa mãn điều kiện, loại bỏ phần tử

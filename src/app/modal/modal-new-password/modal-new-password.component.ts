@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -20,7 +20,8 @@ export class ModalNewPasswordComponent {
   });
   arr: string[] = ['password', 'confirmPassword'];
   constructor(private authService: AuthService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -78,6 +79,11 @@ export class ModalNewPasswordComponent {
         this.closeModal.emit();
       })
     }, error => { })
+  }
+
+  back() {
+    this.closeModal.emit();
+    this.router.navigate(['/']);
   }
 
   formatPassword() {

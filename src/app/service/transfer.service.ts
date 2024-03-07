@@ -11,10 +11,11 @@ export class TransferService {
       'id': 0,
       'showModal': false,
       'showModalConfig': false,
-      'showModalSignin': false,
+      'showModalDelete': false,
       'idSignup': 0,
       'showModalSignup': false,
-      'showModalNewPassword': false
+      'showModalNewPassword': false,
+      'deleteFor': ''
     }
   );
 
@@ -50,9 +51,9 @@ export class TransferService {
     this._sharedData.next(val);
   }
 
-  setShowModalSignin(boo: boolean) {
+  setShowModalDelete(boo: boolean) {
     let val = this._sharedData.value;
-    val.showModalSignin = boo;
+    val.showModalDelete = boo;
     this._sharedData.next(val);
   }
 
@@ -65,6 +66,12 @@ export class TransferService {
   setShowModalNewPassword(boo: boolean) {
     let val = this._sharedData.value;
     val.showModalNewPassword = boo;
+    this._sharedData.next(val);
+  }
+
+  setDeleteFor(str: string) {
+    let val = this._sharedData.value;
+    val.deleteFor = str;
     this._sharedData.next(val);
   }
 }
