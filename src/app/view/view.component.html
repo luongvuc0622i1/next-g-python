@@ -10,10 +10,7 @@
   <div class="table">
     <div class="header" style="height: 65px;">
       <div class="sub-header" style="margin: 10px;">
-        <button *ngIf="role === 'Admin'" class="button" style="padding: 10px;" (click)="crawler()">
-          <i class="fa-solid fa-rotate-right" style="font-size: 24px;"></i>
-        </button>
-        <div *ngIf="role !== 'Admin'"></div>
+        <div></div>
         <!-- <div class="heading-3">{{namePage}}</div> -->
         <input class="input-search" type="text" style="width: 50%;" [(ngModel)]="key">
         <button class="button" style="padding: 10px;" (click)="onInputChange()">

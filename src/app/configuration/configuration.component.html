@@ -1,5 +1,12 @@
 <app-navigation></app-navigation>
-<div class="getTableStyle">
+<div class="parent" *ngIf="loading">
+  <div class="loader child">
+    <div class="bar bar1"></div>
+    <div class="bar bar2"></div>
+    <div class="bar bar3"></div>
+  </div>
+</div>
+<div class="getTableStyle" *ngIf="!loading">
   <div class="table">
     <div class="header" style="height: 65px;">
       <div class="sub-header" style="margin: 10px;">
@@ -17,20 +24,24 @@
         <tr>
           <th class="body-3 long-text-100">STT</th>
           <th class="body-3 long-text-200">Website name</th>
-          <th class="body-3 long-text-500">Website url</th>
-          <th colspan="2"></th>
+          <th class="body-3 long-text-400">Website url</th>
+          <th colspan="3"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of fullData" style="height: 62.5px;">
+        <tr *ngFor="let item of fullData; let i = index" style="height: 62.5px;">
           <td>
-            <div class="body-3 ta-center">{{item.website_url ? item.index : ''}}</div>
+            <div class="body-3 ta-center">{{item.website_url ? ((currentPage - 1) * amount + i + 1) : ''}}</div>
           </td>
           <td>
             <div class="body-3 ta-center">{{item.website_name}}</div>
           </td>
           <td>
             <div class="body-5 ta-center">{{item.website_url}}</div>
+          </td>
+          <td class="ta-center long-text-100">
+            <button class="button button-hover button-1 color-gray-1 pri-button" style="padding: 8px 24px;"
+              (click)="crawler(item.id)" *ngIf="item.website_url">Crawler</button>
           </td>
           <td class="ta-center long-text-100">
             <button class="button button-hover button-1 color-gray-1 pri-button" style="padding: 8px 24px;"

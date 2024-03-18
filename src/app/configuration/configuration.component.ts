@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './configuration.component.css'
 })
 export class ConfigurationComponent {
+  loading: boolean = false;
+
   fullData: any;
   amount: number = 10;
 
@@ -46,6 +48,14 @@ export class ConfigurationComponent {
   refresh(curPage: number): void {
     this.currentPage = curPage;
     this.onload(curPage);
+  }
+
+  crawler(id: string): void {
+    this.loading = true;
+    this.apiService.getView(parseInt(id)).subscribe(response => {
+      this.refresh(1);
+      this.loading = false;
+    }, () => {});
   }
 
   navi(id: string): void {

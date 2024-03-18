@@ -63,8 +63,8 @@ export class ApiService {
     return this.http.get<any>(`${API_URL}/getAllData/${id}`);
   }
 
-  getAccounts(): Observable<any[]> {
-    return this.http.get<any[]>(`${API_URL}/list-user`);
+  getAccounts(page: number, size: number): Observable<any> {
+    return this.http.get<any>(`${API_URL}/list-user?page=${page}&size=${size}`);
   }
 
   getAccount(id: number): Observable<any> {

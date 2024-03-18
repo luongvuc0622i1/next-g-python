@@ -59,12 +59,4 @@ export class ViewComponent {
   onInputChange(): void {
     this.onload(1, this.key);
   }
-
-  crawler(): void {
-    this.loading = true;
-    this.apiService.getView(this.id).subscribe(response => {
-      this.refresh(1);
-      this.loading = false;
-    }, () => {});
-  }
 }

@@ -28,7 +28,7 @@ export class AccountsComponent {
   }
 
   onload(curPage: number): void {
-    this.apiService.getPages(curPage - 1, this.amount).subscribe(response => {
+    this.apiService.getAccounts(curPage - 1, this.amount).subscribe(response => {
       this.totalPages = response.totalPages;
 
       let elToAdd = response.size - response.numberOfElements;
