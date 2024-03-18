@@ -11,20 +11,28 @@ const API_URL = environment.apiUrl;
 export class ApiService {
   constructor(private http: HttpClient) { }
 
-  getAllByUser(): Observable<any[]> {
-    return this.http.get<any[]>(`${API_URL}/list-website-description`);
+  getSearchAllItems(page: number, size: number, key: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/search?page=${page}&size=${size}&keyword=${key}`);
   }
 
-  getViewByUser(id: number): Observable<any[]> {
-    return this.http.get<any>(`${API_URL}/website-description/${id}`);
+  getSearchItem(id: number, page: number, size: number, key: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/search-with-id/${id}?page=${page}&size=${size}&keyword=${key}`);
   }
+
+  // getAllByUser(page: number, size: number): Observable<any> {
+  //   return this.http.get<any>(`${API_URL}/list-website-description?page=${page}&size=${size}`);
+  // }
+
+  // getViewByUser(id: number, page: number, size: number): Observable<any> {
+  //   return this.http.get<any>(`${API_URL}/website-description/${id}?page=${page}&size=${size}`);
+  // }
 
   getAll(): Observable<any[]> {
     return this.http.get<any[]>(`${API_URL}/all`);
   }
 
-  getPages(): Observable<any[]> {
-    return this.http.get<any[]>(`${API_URL}/getAll`);
+  getPages(page: number, size: number): Observable<any> {
+    return this.http.get<any>(`${API_URL}/getAll?page=${page}&size=${size}`);
   }
 
   getPage(id: number): Observable<any> {
@@ -51,7 +59,7 @@ export class ApiService {
     return this.http.get<any>(`${API_URL}/getName/${id}`);
   }
 
-  getView(id: number): Observable<any[]> {
+  getView(id: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/getAllData/${id}`);
   }
 

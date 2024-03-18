@@ -7,32 +7,26 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class PaginationComponent {
   // @ts-ignore
-  @Input() fullData;
+  @Input() totalPages;
   // @ts-ignore
-  @Input() amount;
+  @Input() currentPage;
   @Output() refresh = new EventEmitter<number>();
 
-  curPage: number = 1;
-  numOfPages: number = 1;
   pageNumbers: any[] = [];
   amountDisplay: number = 5; // 5 phần tử ở khoảng giữa - phải là số lẻ
 
   ngOnInit(): void {
-    this.numOfPages = Math.ceil(this.fullData.length / this.amount);
-    // this.pageNumbers = Array.from({ length: this.numOfPages < this.amountDisplay ? (this.numOfPages - 1) : this.amountDisplay }, (_, index) => index + 2);
     this.sub();
   }
 
-  ngOnChanges(): void {
-    this.numOfPages = Math.ceil(this.fullData.length / this.amount);
-    // this.pageNumbers = Array.from({ length: this.numOfPages < this.amountDisplay ? (this.numOfPages - 1) : this.amountDisplay }, (_, index) => index + 2);
-    this.sub();
-  }
+  // ngOnChanges(): void {
+  //   this.sub();
+  // }
 
   sub(): void {
     const amountNum = this.amountDisplay - 1;
-    const totalPages = this.numOfPages;
-    let currentPage = this.curPage;
+    const totalPages = this.totalPages;
+    let currentPage = this.currentPage;
 
     // Tạo mảng số trang
     this.pageNumbers = [];
@@ -64,36 +58,36 @@ export class PaginationComponent {
   }
 
   firstPage() {
-    this.curPage = 1;
-    this.refresh.emit(this.curPage);
+    this.currentPage = 1;
+    this.refresh.emit(this.currentPage);
 
     this.sub();
   }
 
   prevPage() {
-    this.curPage -= 1;
-    this.refresh.emit(this.curPage);
+    this.currentPage -= 1;
+    this.refresh.emit(this.currentPage);
     
     this.sub();
   }
 
   choosePage(num: number) {
-    this.curPage = num;
-    this.refresh.emit(this.curPage);
+    this.currentPage = num;
+    this.refresh.emit(this.currentPage);
     
     this.sub();
   }
 
   nextPage() {
-    this.curPage += 1;
-    this.refresh.emit(this.curPage);
+    this.currentPage += 1;
+    this.refresh.emit(this.currentPage);
     
     this.sub();
   }
 
   lastPage() {
-    this.curPage = this.numOfPages;
-    this.refresh.emit(this.curPage);
+    this.currentPage = this.totalPages;
+    this.refresh.emit(this.currentPage);
     
     this.sub();
   }

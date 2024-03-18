@@ -23,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of accounts" style="height: 62.5px;">
+        <tr *ngFor="let item of fullData" style="height: 62.5px;">
           <td>
             <div class="body-3 ta-center">{{item.email ? item.index : ''}}</div>
           </td>
@@ -48,7 +48,7 @@
       </tbody>
     </table>
     <div class="footer" style="height: 65px;">
-      <app-pagination *ngIf="condition" [fullData]="fullData" [amount]="amount"
+      <app-pagination *ngIf="totalPages > 1" [totalPages]="totalPages" [currentPage]="currentPage"
         (refresh)="refresh($event)"></app-pagination>
     </div>
   </div>

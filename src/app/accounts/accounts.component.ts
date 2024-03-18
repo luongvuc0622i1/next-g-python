@@ -9,11 +9,11 @@ import { TransferService } from '../service/transfer.service';
   styleUrl: './accounts.component.css'
 })
 export class AccountsComponent {
-  accounts: any;
-  amount: number = 10;
-  fullDataOrigin: any;
   fullData: any;
-  condition: boolean = false;
+  amount: number = 10;
+
+  totalPages: number = 0;
+  currentPage: number = 1;
 
   private subscription?: Subscription;
 
@@ -21,40 +21,29 @@ export class AccountsComponent {
     private transferService: TransferService) { }
 
   ngOnInit(): void {
-    this.onload();
+    this.onload(1);
     this.subscription = this.transferService.callReload$.subscribe(() => {
-      this.onload();
+      this.onload(1);
     });
   }
 
-  onload(): void {
-    this.apiService.getAccounts().subscribe(response => {
-      this.fullDataOrigin = response.map((item: any, index: number) => {
-        return {
-          index: index + 1,
-          ...item
-        };
-      });
+  onload(curPage: number): void {
+    this.apiService.getPages(curPage - 1, this.amount).subscribe(response => {
+      this.totalPages = response.totalPages;
 
-      let elToAdd = this.fullDataOrigin.length % this.amount ? this.amount - (this.fullDataOrigin.length % this.amount) : 0;
-      this.fullDataOrigin = [
-        ...this.fullDataOrigin,
+      let elToAdd = response.size - response.numberOfElements;
+      this.fullData = [
+        ...response.content,
         ...Array.from({ length: elToAdd }, () => ({}))
       ]
-      this.condition = true;
-      this.fullData = this.fullDataOrigin;
-      this.refresh(1);
     }, () => {
-      this.fullDataOrigin = Array.from({ length: this.amount }, () => ({}));
-      this.fullData = this.fullDataOrigin;
-      this.refresh(1);
+      this.fullData = Array.from({ length: this.amount }, () => ({}));
     });
   }
 
   refresh(curPage: number): void {
-    let start = (curPage - 1) * this.amount;
-    let end = start + this.amount;
-    this.accounts = this.fullData.slice(start, end);
+    this.currentPage = curPage;
+    this.onload(curPage);
   }
 
   edit(id: string): void {
