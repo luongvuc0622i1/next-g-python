@@ -1,18 +1,11 @@
 <app-navigation></app-navigation>
-<div class="parent" *ngIf="loading">
-  <div class="loader child">
-    <div class="bar bar1"></div>
-    <div class="bar bar2"></div>
-    <div class="bar bar3"></div>
-  </div>
-</div>
-<div class="getTableStyle" *ngIf="!loading">
+<div class="getTableStyle">
   <div class="table">
     <div class="header" style="height: 65px;">
-      <div class="sub-header" style="margin: 10px;">
+      <div class="sub-header" style="margin: 10px; justify-content: center;">
         <div></div>
         <!-- <div class="heading-3">{{namePage}}</div> -->
-        <input class="input-search" type="text" style="width: 50%;" [(ngModel)]="key">
+        <input class="input-search" type="text" style="width: 50%;" [(ngModel)]="key" (keyup.enter)="onInputChange()">
         <button class="button" style="padding: 10px;" (click)="onInputChange()">
           <i class="fa-solid fa-magnifying-glass" style="font-size: 24px;"></i>
         </button>
@@ -22,14 +15,54 @@
       <thead>
         <tr>
           <th class="body-3 long-text-100">STT</th>
-          <th class="body-3 long-text-100">Publishing</th>
-          <th class="body-3 long-text-200">Title</th>
-          <th class="body-3 long-text-400">Detail</th>
-          <th class="body-3 long-text-100">Area</th>
-          <th class="body-3 long-text-100">Price</th>
+          <th class="long-text-100">
+            <div class="column body-3">
+              <div></div>
+              <div>Ngày đăng</div>
+              <div class="pointer" [ngStyle]="{'color': colDate ? 'var(--secondary-active-color)' : 'var(--primary-color)'}" (click)="sortDate()">
+                <i class="fa-solid fa-sort"></i>
+              </div>
+            </div>
+          </th>
+          <th class="long-text-200">
+            <div class="column body-3">
+              <div></div>
+              <div>Tiêu đề</div>
+              <div class="pointer" [ngStyle]="{'color': colTitle ? 'var(--secondary-active-color)' : 'var(--primary-color)'}" (click)="sortTitle()">
+                <i class="fa-solid fa-sort"></i>
+              </div>
+            </div>
+          </th>
+          <th class="long-text-400">
+            <div class="column body-3">
+              <div></div>
+              <div>Nội dung</div>
+              <div class="pointer" [ngStyle]="{'color': colDetail ? 'var(--secondary-active-color)' : 'var(--primary-color)'}" (click)="sortDetail()">
+                <i class="fa-solid fa-sort"></i>
+              </div>
+            </div>
+          </th>
+          <th class="long-text-100">
+            <div class="column body-3">
+              <div></div>
+              <div>Diện tích</div>
+              <div class="pointer" [ngStyle]="{'color': colSquare ? 'var(--secondary-active-color)' : 'var(--primary-color)'}" (click)="sortSquare()">
+                <i class="fa-solid fa-sort"></i>
+              </div>
+            </div>
+          </th>
+          <th class="long-text-100">
+            <div class="column body-3">
+              <div></div>
+              <div>Giá</div>
+              <div class="pointer" [ngStyle]="{'color': colPrice ? 'var(--secondary-active-color)' : 'var(--primary-color)'}" (click)="sortPrice()">
+                <i class="fa-solid fa-sort"></i>
+              </div>
+            </div>
+          </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="!loading">
         <tr *ngFor="let item of fullData; let i = index" style="height: 125px;">
           <td>
             <div class="body-3 ta-center">{{item.date ? ((currentPage - 1) * amount + i + 1) : ''}}</div>
@@ -39,12 +72,12 @@
           </td>
           <td>
             <a href={{item.url}} target="_blank">
-              <div class="body-3" style="height: 105px; overflow-y: auto;">{{item.title ? item.title : item.url}}
+              <div class="body-3" style="max-height: 105px; overflow-y: auto;">{{item.title ? item.title : item.url}}
               </div>
             </a>
           </td>
           <td>
-            <div class="body-5" style="height: 105px; overflow-y: auto;">{{item.detail}}</div>
+            <div class="body-5" style="max-height: 105px; overflow-y: auto;">{{item.detail}}</div>
           </td>
           <td>
             <div class="body-5 ta-center">{{item.square}}</div>
@@ -54,10 +87,27 @@
           </td>
         </tr>
       </tbody>
+      <tfoot class="parent" style="height: 300px;" *ngIf="loading">
+        <div class="loader child">
+          <div class="bar bar1"></div>
+          <div class="bar bar2"></div>
+          <div class="bar bar3"></div>
+        </div>
+      </tfoot>
     </table>
     <div class="footer" style="height: 65px;">
-      <app-pagination *ngIf="totalPages > 1" [totalPages]="totalPages" [currentPage]="currentPage"
-        (refresh)="refresh($event)"></app-pagination>
+      <div class="sub-header" style="margin: 10px; align-items: center;">
+        <app-pagination *ngIf="totalPages > 1" [totalPages]="totalPages" [currentPage]="currentPage"
+          (refresh)="refresh($event)"></app-pagination>
+        <select class="select" style="cursor: pointer;" [(ngModel)]="amount" (change)="handleSelected()">
+          <option>50</option>
+          <option>100</option>
+          <option>200</option>
+          <option>300</option>
+          <option>500</option>
+          <option>1000</option>
+        </select>
+      </div>
     </div>
   </div>
 </div>

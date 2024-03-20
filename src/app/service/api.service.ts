@@ -11,12 +11,12 @@ const API_URL = environment.apiUrl;
 export class ApiService {
   constructor(private http: HttpClient) { }
 
-  getSearchAllItems(page: number, size: number, key: string): Observable<any> {
-    return this.http.get<any>(`${API_URL}/search?page=${page}&size=${size}&keyword=${key}`);
+  getSearchAllItems(page: number, size: number, key: string, sortBy: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
   }
 
-  getSearchItem(id: number, page: number, size: number, key: string): Observable<any> {
-    return this.http.get<any>(`${API_URL}/search-with-id/${id}?page=${page}&size=${size}&keyword=${key}`);
+  getSearchItem(id: number, page: number, size: number, key: string, sortBy: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/search-with-id/${id}?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
   }
 
   // getAllByUser(page: number, size: number): Observable<any> {
