@@ -96,7 +96,7 @@
       </tfoot>
     </table>
     <div class="footer" style="height: 65px;">
-      <div class="sub-header" style="margin: 10px; align-items: center;">
+      <div class="sub-header" style="margin: 10px; align-items: center; justify-content: center;">
         <app-pagination *ngIf="totalPages > 1" [totalPages]="totalPages" [currentPage]="currentPage"
           (refresh)="refresh($event)"></app-pagination>
         <select class="select" style="cursor: pointer;" [(ngModel)]="amount" (change)="handleSelected()">
