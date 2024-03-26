@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '../service/api.service';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  selector: 'app-autoAll',
+  templateUrl: './autoAll.component.html'
 })
-export class HomeComponent {
+export class AutoAllComponent {
   loading: boolean = true;
 
   fullData: any;
@@ -22,7 +21,9 @@ export class HomeComponent {
   colDate: boolean = false;
   colTitle: boolean = false;
   colDetail: boolean = false;
-  colSquare: boolean = false;
+  colGear: boolean = false;
+  colEngine: boolean = false;
+  colDesigns: boolean = false;
   colPrice: boolean = false;
 
   constructor(private router: Router,
@@ -34,16 +35,9 @@ export class HomeComponent {
 
   onload(): void {
     this.loading = true;
-    this.apiService.getSearchAllItems(this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
+    this.apiService.getAutoAllItems(this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
       this.totalPages = response.totalPages;
-
-      // let elToAdd = response.size - response.numberOfElements;
-      // this.fullData = [
-      //   ...response.content,
-      //   ...Array.from({ length: elToAdd }, () => ({}))
-      // ]
       this.fullData = response.content;
-      
       this.loading = false;
     }, () => {
       this.fullData = Array.from({ length: this.amount }, () => ({}));
@@ -67,7 +61,7 @@ export class HomeComponent {
   }
 
   navi(id: string): void {
-    this.router.navigate(['/page', id]);
+    this.router.navigate(['/auto', id]);
   }
 
   removeElementFromArray<T>(arr: T[], element: T): T[] {
@@ -114,13 +108,37 @@ export class HomeComponent {
     this.onload()
   }
 
-  sortSquare(): void {
-    if (!this.colSquare) {
-      this.colSquare = true;
-      this.sortBy.push('square');
+  sortGear(): void {
+    if (!this.colGear) {
+      this.colGear = true;
+      this.sortBy.push('gear');
     } else {
-      this.colSquare = false;
-      this.sortBy = this.removeElementFromArray(this.sortBy, 'square');
+      this.colGear = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'gear');
+    }
+    this.currentPage = 1;
+    this.onload()
+  }
+
+  sortEngine(): void {
+    if (!this.colEngine) {
+      this.colEngine = true;
+      this.sortBy.push('engine');
+    } else {
+      this.colEngine = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'engine');
+    }
+    this.currentPage = 1;
+    this.onload()
+  }
+
+  sortDesigns(): void {
+    if (!this.colDesigns) {
+      this.colDesigns = true;
+      this.sortBy.push('designs');
+    } else {
+      this.colDesigns = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'designs');
     }
     this.currentPage = 1;
     this.onload()

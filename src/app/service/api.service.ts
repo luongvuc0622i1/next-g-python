@@ -11,26 +11,28 @@ const API_URL = environment.apiUrl;
 export class ApiService {
   constructor(private http: HttpClient) { }
 
-  getSearchAllItems(page: number, size: number, key: string, sortBy: string): Observable<any> {
-    return this.http.get<any>(`${API_URL}/search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
-  }
-
-  getSearchItem(id: number, page: number, size: number, key: string, sortBy: string): Observable<any> {
+  getBdsItem(id: number, page: number, size: number, key: string, sortBy: string): Observable<any> {
     return this.http.get<any>(`${API_URL}/search-with-id/${id}?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
   }
 
-  // getAllByUser(page: number, size: number): Observable<any> {
-  //   return this.http.get<any>(`${API_URL}/list-website-description?page=${page}&size=${size}`);
-  // }
-
-  // getViewByUser(id: number, page: number, size: number): Observable<any> {
-  //   return this.http.get<any>(`${API_URL}/website-description/${id}?page=${page}&size=${size}`);
-  // }
-
-  getAll(): Observable<any[]> {
-    return this.http.get<any[]>(`${API_URL}/all`);
+  getBdsAllItems(page: number, size: number, key: string, sortBy: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
   }
 
+  getAutoItem(id: number, page: number, size: number, key: string, sortBy: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/search-with-id/${id}?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
+  }
+
+  getAutoAllItems(page: number, size: number, key: string, sortBy: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
+  }
+
+  // crawler
+  crawlerBds(id: number): Observable<any> {
+    return this.http.get<any>(`${API_URL}/getAllData/${id}`);
+  }
+
+  // configuration
   getPages(page: number, size: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/getAll?page=${page}&size=${size}`);
   }
@@ -55,14 +57,7 @@ export class ApiService {
     return this.http.delete<any>(`${API_URL}/delete/${id}`);
   }
 
-  getNamePage(id: number): Observable<any> {
-    return this.http.get<any>(`${API_URL}/getName/${id}`);
-  }
-
-  getView(id: number): Observable<any> {
-    return this.http.get<any>(`${API_URL}/getAllData/${id}`);
-  }
-
+  // accounts
   getAccounts(page: number, size: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/list-user?page=${page}&size=${size}`);
   }

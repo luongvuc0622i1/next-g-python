@@ -52,14 +52,14 @@ export class ConfigurationComponent {
 
   crawler(id: string): void {
     this.loading = true;
-    this.apiService.getView(parseInt(id)).subscribe(response => {
+    this.apiService.crawlerBds(parseInt(id)).subscribe(response => {
       this.refresh(1);
       this.loading = false;
     }, () => {});
   }
 
   navi(id: string): void {
-    this.router.navigate(['/page', id]);
+    this.router.navigate(['/bds', id]);
   }
 
   config(id: string): void {

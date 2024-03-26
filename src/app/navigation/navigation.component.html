@@ -3,11 +3,8 @@
     <img src="./assets/nextG.png" class="pointer" (click)="onClick('home')" />
   </div>
   <div class="nav-links">
-    <!-- <a>Tab 1</a>
-    <a>Tab 2</a>
-    <a>Tab 3</a>
-    <a>Tab 4</a>
-    <a>Tab 5</a> -->
+    <a (click)="onClick('bds')">BDS</a>
+    <a (click)="onClick('auto')">AUTO</a>
   </div>
   <div class="nav-actions pointer" (click)="toggleSetting()" *ngIf="isTokenValid">
     <img src={{img}} />

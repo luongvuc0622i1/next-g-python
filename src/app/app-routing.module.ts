@@ -4,15 +4,13 @@ import { AuthGuard } from './service/auth.guard';
 import { LandingComponent } from './landing/landing.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccountsComponent } from './accounts/accounts.component';
-import { HomeComponent } from './home/home.component';
-import { ViewComponent } from './view/view.component';
+import { BdsAllComponent } from './data/bdsAll/bdsAll.component';
+import { BdsDetailComponent } from './data/bdsDetail/bdsDetail.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { AutoAllComponent } from './data/autoAll/autoAll.component';
+import { AutoDetailComponent } from './data/autoDetail/autoDetail.component';
 
 const routes: Routes = [
-  {
-    path: 'page/:id', canActivate: [AuthGuard],
-    component: ViewComponent
-  },
   {
     path: 'config', canActivate: [AuthGuard],
     component: ConfigurationComponent
@@ -23,7 +21,23 @@ const routes: Routes = [
   },
   {
     path: 'home', canActivate: [AuthGuard],
-    component: HomeComponent
+    component: BdsAllComponent
+  },
+  {
+    path: 'bds', canActivate: [AuthGuard],
+    component: BdsAllComponent
+  },
+  {
+    path: 'bds/:id', canActivate: [AuthGuard],
+    component: BdsDetailComponent
+  },
+  {
+    path: 'auto', canActivate: [AuthGuard],
+    component: AutoAllComponent
+  },
+  {
+    path: 'auto/:id', canActivate: [AuthGuard],
+    component: AutoDetailComponent
   },
   {
     path: 'changePassword',
