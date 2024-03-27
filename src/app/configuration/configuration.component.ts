@@ -50,16 +50,31 @@ export class ConfigurationComponent {
     this.onload(curPage);
   }
 
-  crawler(id: string): void {
+  crawler(item: any): void {
     this.loading = true;
-    this.apiService.crawlerBds(parseInt(id)).subscribe(response => {
-      this.refresh(1);
-      this.loading = false;
-    }, () => {});
+    if (item.type === 'bds' || item.type === 'auto') {
+      let crawlerFunction;
+      switch (item.type) {
+        case 'bds':
+          crawlerFunction = this.apiService.crawlerBds;
+          break;
+        case 'auto':
+          crawlerFunction = this.apiService.crawlerAuto;
+          break;
+        default:
+          break;
+      }
+      if (crawlerFunction) {
+        crawlerFunction(parseInt(item.id)).subscribe(response => {
+          this.refresh(1);
+          this.loading = false;
+        }, () => { });
+      }
+    }
   }
 
-  navi(id: string): void {
-    this.router.navigate(['/bds', id]);
+  navi(item: any): void {
+    this.router.navigate(['/' + item.type, item.id]);
   }
 
   config(id: string): void {

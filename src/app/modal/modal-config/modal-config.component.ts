@@ -13,14 +13,16 @@ export class ModalConfigComponent {
   id: number = 0;
   statusName: string = '';
   statusUrl: string = '';
+  statusCategory: string = '';
   statusSpider: string = '';
   formConfiguration: FormGroup = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
     url: new FormControl(),
     spider: new FormControl(),
+    category: new FormControl(),
   });
-  arr: string[] = ['name', 'url', 'spider'];
+  arr: string[] = ['name', 'url', 'spider', 'category'];
   constructor(private apiService: ApiService,
     private transferService: TransferService) { }
 
@@ -35,11 +37,17 @@ export class ModalConfigComponent {
         'name': response.name,
         'url': response.url,
         'spider': response.spider_url,
+        'category': response.type,
       });
+      this.check();
     });
   }
 
   ngDoCheck(): void {
+    this.check();
+  }
+
+  check(): void {
     this.arr.forEach(element => {
       const inputField = document.getElementById(element) as HTMLInputElement;
       const label = inputField.previousElementSibling as HTMLElement;
@@ -80,8 +88,6 @@ export class ModalConfigComponent {
   }
 
   triggerFileInput() {
-    // const file = document.getElementById('fileInput') as HTMLInputElement;
-    // file.click();
     document.getElementById('fileInput')?.click();
   }
 
@@ -89,10 +95,12 @@ export class ModalConfigComponent {
     this.formatName();
     this.formatUrl();
     this.formatSpider();
-    if (this.statusName || this.statusUrl || this.statusSpider) return;
+    this.formatCategory();
+    if (this.statusName || this.statusUrl || this.statusSpider || this.statusCategory) return;
     const formData: FormData = new FormData();
     formData.append('name', this.formConfiguration.value.name);
     formData.append('url', this.formConfiguration.value.url);
+    formData.append('type', this.formConfiguration.value.category);
     if (this.selectedFile) {
       formData.append('file', this.selectedFile, this.selectedFile.name);
       if (this.formConfiguration.value.id) {
@@ -142,6 +150,12 @@ export class ModalConfigComponent {
     } else if (!urlRegex.test(this.formConfiguration.value.url)) {
       this.statusUrl = 'Url format is not correct';
     } else this.statusUrl = '';
+  }
+
+  formatCategory() {
+    if (!this.formConfiguration.value.category) {
+      this.statusCategory = 'Category is require';
+    } else this.statusCategory = '';
   }
 
   formatSpider() {

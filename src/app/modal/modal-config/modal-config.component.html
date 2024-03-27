@@ -100,7 +100,7 @@
         </defs>
       </svg>
     </div>
-    <div class="heading-7 color-default">Create New Website</div>
+    <div class="heading-7 color-default">{{id ? "Edit Website" : "Create New Website"}}</div>
     <div class="body-7 color-gray-300">Please enter new website information to access.</div>
   </div>
   <div class="w-100">
@@ -116,6 +116,16 @@
       <input class="input-field body-4 w-100" type="text" id="url" formControlName="url" (keyup)="formatUrl()" />
     </div>
     <div class="error">{{statusUrl}}</div>
+  </div>
+  <div class="w-100">
+    <div class="relative">
+      <label class="input-label-default color-gray-1" for="category">Loại</label>
+      <select class="input-field body-4 w-100" style="cursor: pointer;" id="category" formControlName="category" (mouseleave)="formatCategory()">
+        <option>bds</option>
+        <option>auto</option>
+      </select>
+    </div>
+    <div class="error">{{statusCategory}}</div>
   </div>
   <div class="w-100">
     <div class="relative">
