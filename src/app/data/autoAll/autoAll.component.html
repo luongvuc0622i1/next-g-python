@@ -33,7 +33,7 @@
               </div>
             </div>
           </th>
-          <th class="long-text-200">
+          <th class="long-text-300">
             <div class="column body-3">
               <div></div>
               <div>Nội dung</div>
@@ -51,7 +51,7 @@
               </div>
             </div>
           </th>
-          <th class="long-text-100">
+          <!-- <th class="long-text-100">
             <div class="column body-3">
               <div></div>
               <div>Động cơ</div>
@@ -59,12 +59,12 @@
                 <i class="fa-solid fa-sort"></i>
               </div>
             </div>
-          </th>
+          </th> -->
           <th class="long-text-100">
             <div class="column body-3">
               <div></div>
               <div>Kiểu dáng</div>
-              <div class="pointer" [ngStyle]="{'color': colDesigns ? 'var(--secondary-active-color)' : 'var(--primary-color)'}" (click)="sortDesigns()">
+              <div class="pointer" [ngStyle]="{'color': colType ? 'var(--secondary-active-color)' : 'var(--primary-color)'}" (click)="sortType()">
                 <i class="fa-solid fa-sort"></i>
               </div>
             </div>
@@ -96,13 +96,13 @@
             <div class="body-5" style="max-height: 105px; overflow-y: auto;">{{item.detail}}</div>
           </td>
           <td>
-            <div class="body-5 ta-center">{{item.square}}</div>
+            <div class="body-5 ta-center">{{item.gear}}</div>
           </td>
+          <!-- <td>
+            <div class="body-5 ta-center">{{item.engine}}</div>
+          </td> -->
           <td>
-            <div class="body-5 ta-center">{{item.square}}</div>
-          </td>
-          <td>
-            <div class="body-5 ta-center">{{item.square}}</div>
+            <div class="body-5 ta-center">{{item.type}}</div>
           </td>
           <td>
             <div class="body-5 ta-center">{{item.price}}</div>

@@ -20,16 +20,20 @@ export class ApiService {
   }
 
   getAutoItem(id: number, page: number, size: number, key: string, sortBy: string): Observable<any> {
-    return this.http.get<any>(`${API_URL}/search-with-id/${id}?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
+    return this.http.get<any>(`${API_URL}/search-car-with-id/${id}?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
   }
 
   getAutoAllItems(page: number, size: number, key: string, sortBy: string): Observable<any> {
-    return this.http.get<any>(`${API_URL}/search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
+    return this.http.get<any>(`${API_URL}/car-search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
   }
 
   // crawler
   crawlerBds(id: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/getAllData/${id}`);
+  }
+
+  crawlerAuto(id: number): Observable<any> {
+    return this.http.get<any>(`${API_URL}/crawlCarData/${id}`);
   }
 
   // configuration

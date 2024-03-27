@@ -23,7 +23,7 @@ export class AutoAllComponent {
   colDetail: boolean = false;
   colGear: boolean = false;
   colEngine: boolean = false;
-  colDesigns: boolean = false;
+  colType: boolean = false;
   colPrice: boolean = false;
 
   constructor(private router: Router,
@@ -132,13 +132,13 @@ export class AutoAllComponent {
     this.onload()
   }
 
-  sortDesigns(): void {
-    if (!this.colDesigns) {
-      this.colDesigns = true;
-      this.sortBy.push('designs');
+  sortType(): void {
+    if (!this.colType) {
+      this.colType = true;
+      this.sortBy.push('type');
     } else {
-      this.colDesigns = false;
-      this.sortBy = this.removeElementFromArray(this.sortBy, 'designs');
+      this.colType = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'type');
     }
     this.currentPage = 1;
     this.onload()
