@@ -42,7 +42,10 @@ export class BdsDetailComponent {
 
   onload(): void {
     this.loading = true;
-    if (!this.sortBy.length) this.sortBy.push('date');
+    if (!this.sortBy.length) {
+      this.colDate = true;
+      this.sortBy.push('date');
+    }
     this.apiService.getBdsItem(this.id, this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
       this.totalPages = response.totalPages;
       this.fullData = response.content;
