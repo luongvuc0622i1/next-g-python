@@ -44,12 +44,13 @@ export class AutoDetailComponent {
 
   onload(): void {
     this.loading = true;
+    if (!this.sortBy.length) this.sortBy.push('date');
     this.apiService.getAutoItem(this.id, this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
       this.totalPages = response.totalPages;
       this.fullData = response.content;
       this.loading = false;
     }, () => {
-      this.fullData = Array.from({ length: this.amount }, () => ({}));
+      this.fullData = Array.from({ length: 5 }, () => ({}));
       this.loading = false;
     });
   }
