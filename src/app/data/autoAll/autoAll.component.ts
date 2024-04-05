@@ -39,7 +39,6 @@ export class AutoAllComponent {
       this.colDate = true;
       this.sortBy.push('date');
     }
-    console.log(this.sortBy)
     this.apiService.getAutoAllItems(this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
       this.totalPages = response.totalPages;
       this.fullData = response.content;
