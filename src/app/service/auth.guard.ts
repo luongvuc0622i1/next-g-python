@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     const role = this.tokenService.getUserRole();
     const url = state.url;
 
-    if (token && (role === 'Admin' || (url !== '/accounts' && url !== '/config'))) {
+    if (token && (role.toLowerCase() === 'admin' || (url !== '/accounts' && url !== '/config'))) {
       // Gọi hàm kiểm tra tính hợp lệ của token và cập nhật giá trị của isTokenValid
       return this.authService.checkTokenValidity(token).pipe(
         map(data => {
