@@ -4,9 +4,13 @@
     align-items: flex-start;
     gap: 24px;
     flex-shrink: 0;
-    position: unset;
-    transform: none;
-    padding: 150px 30% 0;
+    /* padding: 150px 30% 0; */
+    width: 80%;
+    max-width: 300px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .login-container .container {
