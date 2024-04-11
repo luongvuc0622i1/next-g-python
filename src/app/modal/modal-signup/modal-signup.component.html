@@ -108,7 +108,7 @@
         <div class="relative">
             <label class="input-label-default color-gray-1" for="email">Email</label>
             <input class="input-field body-4 w-100" type="text" id="email" formControlName="email"
-                (keyup)="formatEmail()" />
+                (keyup)="formatEmail()" [readOnly]="idAccount > 0" />
         </div>
         <div class="error">{{statusEmail}}</div>
     </div>
