@@ -21,6 +21,7 @@ export class AuthService {
 
   signInSuccess(data: any) {
     if (data.token) {
+      this.router.navigate(['/home']);
       this.tokenService.setToken(data.token);
       this.tokenService.setRefreshToken(data.refreshToken);
       this.tokenService.setTokenValid(true);
@@ -28,9 +29,6 @@ export class AuthService {
       this.tokenService.setUserImage(data.user_image);
       this.tokenService.setUserRole(data.user_role);
       this.transferService.setShowModal(false);
-      this.transferService.setShowModalDelete(false);
-
-      this.router.navigate(['/home']);
     }
   }
 

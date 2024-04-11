@@ -74,7 +74,13 @@ export class ModalSignupComponent {
     this.formatUsername();
     this.formatRole();
     if (this.statusEmail || this.statusUsername || this.statusRole) return;
-    this.authService.registerEmail(this.formSignup.value).subscribe(data => {
+    let api;
+    if (this.idAccount) {
+      api = this.apiService.editAccount(this.formSignup.value, this.idAccount)
+    } else {
+      api = this.authService.registerEmail(this.formSignup.value)
+    }
+    api.subscribe(data => {
       this.closeModal.emit();
     }, error => { })
   }

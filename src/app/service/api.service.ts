@@ -70,6 +70,10 @@ export class ApiService {
     return this.http.get<any>(`${API_URL}/user-info/${id}`);
   }
 
+  editAccount(obj: any, id: number): Observable<any> {
+    return this.http.put(`${API_URL}/user/${id}`, obj);
+  }
+
   deleteAccount(id: number): Observable<any> {
     return this.http.delete<any>(`${API_URL}/delete-user/${id}`);
   }

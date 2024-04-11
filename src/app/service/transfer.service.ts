@@ -40,6 +40,12 @@ export class TransferService {
   }
 
   setShowModal(boo: boolean) {
+    if (!boo) {
+      this.setShowModalConfig(boo);
+      this.setShowModalDelete(boo);
+      this.setShowModalNewPassword(boo);
+      this.setShowModalSignup(boo);
+    }
     let val = this._sharedData.value;
     val.showModal = boo;
     this._sharedData.next(val);
